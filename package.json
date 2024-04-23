@@ -1,0 +1,19 @@
+{
+  "name": "diario_de_bordo",
+  "version": "1.0.0",
+  "description": "Diario de bordo is a web application developed to help with tha \u001b[C\u001b[C\u001be management of a car fleet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisFilipeAraujo/diario_de_bordo.git"
+  },
+  "author": "Luis Filipe Alves Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuisFilipeAraujo/diario_de_bordo/issues"
+  },
+  "homepage": "https://github.com/LuisFilipeAraujo/diario_de_bordo#readme"
+}
