@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LuisFilipeAraujo/diario_de_bordo/issues"
   },
-  "homepage": "https://github.com/LuisFilipeAraujo/diario_de_bordo#readme"
+  "homepage": "https://github.com/LuisFilipeAraujo/diario_de_bordo#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
