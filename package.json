@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LuisFilipeAraujo/diario_de_bordo#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.19.2"
   }
 }
