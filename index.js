@@ -11,9 +11,14 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-// Rota para a página "menu"
-app.get('/menu', (req, res) => {
-    res.render('menu');
+// Rota para a página "menu" do motorista
+app.get('/menuMotorista', (req, res) => {
+    res.render('menuMotorista');
+});
+
+// Rota para a página "menu" do Adm
+app.get('/menuAdm', (req, res) => {
+    res.render('menuAdm');
 });
 
 app.listen(80, ()=>{
