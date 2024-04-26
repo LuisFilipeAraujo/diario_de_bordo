@@ -21,6 +21,25 @@ app.get('/menuAdm', (req, res) => {
     res.render('menuAdm');
 });
 
+// Rota para adicionar saída
+app.get('/adicionar_saida', (req, res) => {
+    res.send('Página para adicionar saída');
+});
+
+// Rota para adicionar chegada
+app.get('/adicionar_chegada', (req, res) => {
+    res.send('Página para adicionar chegada');
+});
+
+
+app.post('/login', (req, res) => {
+    // Ainda precisa adicionar as credenciais de login e valida-las
+    // Se as credenciais estiverem corretas, 
+    // redireciona para a página de menu do motorista ou menu Adm(no momento só menuMotorista rs)
+    res.redirect('/menuMotorista');
+});
+
+
 app.listen(80, ()=>{
     console.log('Working on port 80!')
 });
