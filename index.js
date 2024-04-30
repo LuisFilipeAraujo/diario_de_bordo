@@ -36,14 +36,14 @@ app.get('/historico', (req, res) => {
     res.render('historico');
 });
 
-// Rota para adicionar saída
+// Rota para a página adicionar_saida
 app.get('/adicionar_saida', (req, res) => {
-    res.send('Página para adicionar saída');
+    res.render('adicionar_saida');
 });
 
-// Rota para adicionar chegada
+// Rota para a página adicionar_chegada
 app.get('/adicionar_chegada', (req, res) => {
-    res.send('Página para adicionar chegada');
+    res.render('adicionar_chegada');
 });
 
 
