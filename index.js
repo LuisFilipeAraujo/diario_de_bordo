@@ -54,17 +54,7 @@ app.post('/login', (req, res) => {
     res.redirect('/menuMotorista');
 });
 
-app.get('/gerenciar_veiculos', (req, res) => {
-    res.send('Página de Gerenciar Veículos');
-});
 
-app.get('/gerenciar_motoristas', (req, res) => {
-    res.send('Página de Gerenciar Motoristas');
-});
-
-app.get('/historico', (req, res) => {
-    res.send('Página de Histórico');
-});
 
 app.listen(80, ()=>{
     console.log('Working on port 80!')
