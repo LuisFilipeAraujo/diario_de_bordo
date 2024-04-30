@@ -21,6 +21,21 @@ app.get('/menuAdm', (req, res) => {
     res.render('menuAdm');
 });
 
+// Rota para a página "gerenciar_veiculos"
+app.get('/gerenciar_veiculos', (req, res) => {
+    res.render('gerenciar_veiculos');
+});
+
+// Rota para a página "gerenciar_motoristas"
+app.get('/gerenciar_motoristas', (req, res) => {
+    res.render('gerenciar_motoristas');
+});
+
+// Rota para a página "historico" do Adm
+app.get('/historico', (req, res) => {
+    res.render('historico');
+});
+
 // Rota para adicionar saída
 app.get('/adicionar_saida', (req, res) => {
     res.send('Página para adicionar saída');
