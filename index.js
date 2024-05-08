@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const usuarioController = require('./controllers/usuarioController');
+
 const app=express();//inicializando o express
 
 app.set('view engine', 'ejs');//para configurar o ejs
@@ -10,6 +12,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', (req, res) => {
     res.render('login');
 });
+
+// Rota para adicionar um novo usuário
+app.post('/usuarios', usuarioController.adicionarUsuario);
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
