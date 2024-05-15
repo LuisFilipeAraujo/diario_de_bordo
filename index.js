@@ -22,13 +22,13 @@ app.get('/login', (req, res) => {
 });
 
 // Rota para a página "menu" do motorista
-app.get('/motoristas/menuMotorista', (req, res) => {
-    res.render('motoristas/menuMotorista');
+app.get('/motoristas/menu-motorista', (req, res) => {
+    res.render('motoristas/menu-motorista');
 });
 
 // Rota para a página "menu" do Adm
-app.get('/motoristas/menuAdm', (req, res) => {
-    res.render('motoristas/menuAdm');
+app.get('/motoristas/menu-adm', (req, res) => {
+    res.render('motoristas/menu-adm');
 });
 
 // Rota para a página "gerenciar-veiculos"
@@ -61,7 +61,7 @@ app.post('/login', (req, res) => {
     // Ainda precisa adicionar as credenciais de login e valida-las
     // Se as credenciais estiverem corretas, 
     // redireciona para a página de menu do motorista ou menu Adm(no momento só menuMotorista rs)
-    res.redirect('motoristas/menuMotorista');
+    res.redirect('motoristas/menu-motorista');
 });
 
 
