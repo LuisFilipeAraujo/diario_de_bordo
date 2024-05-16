@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 
+const bodyParser = require('body-parser');
+const usuarioRoutes = require('./routes/usuarioRoutes');
+
 const usuarioController = require('./controllers/usuarioController');
 
 const app=express();//inicializando o express
@@ -8,6 +11,10 @@ const app=express();//inicializando o express
 app.set('view engine', 'ejs');//para configurar o ejs
 app.set('views', path.join(__dirname, 'views'));
 
+// middleware body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.render('login');
