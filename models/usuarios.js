@@ -22,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
         model: 'setor',
         key: 'setor_ID'
       }
+    },
+    login: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    senha: {
+      type: DataTypes.STRING(60),
+      allowNull: false
     }
   }, {
     sequelize,

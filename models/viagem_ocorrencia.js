@@ -37,17 +37,17 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "ocorrencia_ID",
-        using: "BTREE",
-        fields: [
-          { name: "ocorrencia_ID" },
-        ]
-      },
-      {
         name: "viagem_ocorrencia_ibfk_1",
         using: "BTREE",
         fields: [
           { name: "viagem_ID" },
+        ]
+      },
+      {
+        name: "viagem_ocorrencia_ibfk_2",
+        using: "BTREE",
+        fields: [
+          { name: "ocorrencia_ID" },
         ]
       },
     ]
