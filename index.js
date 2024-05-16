@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const usuarioRoutes = require('./routes/usuarioRoutes');
-
 const usuarioController = require('./controllers/usuarioController');
+const usuarioRoutes = require('./routes/usuarioRoutes');
+const sequelize = require('./config/database');
+
+
 
 const app=express();//inicializando o express
 

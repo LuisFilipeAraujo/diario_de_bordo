@@ -2,10 +2,10 @@ const Usuario = require('../models/usuarios');
 
 exports.adicionarUsuario = async (req, res) => {
   try {
-    const { nome, tipo_Usuario, setor_ID } = req.body;
+    const { nome, tipo_Usuario, setor_ID, login, senha } = req.body;
     
   
-    const novoUsuario = await Usuario.create({ nome, tipo_Usuario, setor_ID });
+    const novoUsuario = await Usuario.create({ nome, tipo_Usuario, setor_ID, login, senha });
     
     res.status(201).json({ message: 'Usuario adicionado com sucesso', usuario: novoUsuario });
   } catch (error) {
