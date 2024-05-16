@@ -11,6 +11,11 @@ async function testDatabaseConnection() {
         console.log('Linhas recuperadas do banco de dados:');
         console.log(resultado[0]); 
 
+        // consulta teste na tabela ocorrencia
+        const resultado2 = await sequelize.query('SELECT * FROM ocorrencia;');
+        console.log('Linhas recuperadas do banco de dados na tabela ocorrencia:');
+        console.log(resultado2[0]); 
+
         // Fecha a conexão com o banco de dados
         await sequelize.close();
         console.log('Conexão com o banco de dados encerrada.');
