@@ -2,9 +2,11 @@ const express = require('express');
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const usuarioController = require('./controllers/usuarioController');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const veiculoRoutes = require('./routes/veiculoRoutes');
 const sequelize = require('./config/database');
+//const usuarioController = require('./controllers/usuarioController');
+//const veiculoController = require('./controllers/veiculoController');
 
 
 
@@ -14,7 +16,7 @@ app.set('view engine', 'ejs');//para configurar o ejs
 app.set('views', path.join(__dirname, 'views'));
 
 // middleware body-parser
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -23,7 +25,12 @@ app.get('/', (req, res) => {
 });
 
 // Rota para adicionar um novo usuário
-app.post('/usuarios', usuarioController.adicionarUsuario);
+//app.post('/usuarios', usuarioController.adicionarUsuario);
+// Rota para adicionar um novo veiculo
+//app.post('/veiculo', veiculoController.adicionarVeiculo);
+
+app.use('/usuarios', usuarioRoutes); // Rotas de usuários
+app.use('/veiculo', veiculoRoutes); // Rotas de veículos
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
