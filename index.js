@@ -4,6 +4,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const veiculoRoutes = require('./routes/veiculoRoutes');
+const viagemRoutes = require('./routes/viagemRoutes');
+const ocorrenciaRoutes = require('./routes/ocorrenciaRoutes');
+const setorRoutes = require('./routes/setorRoutes');
+
 const sequelize = require('./config/database');
 //const usuarioController = require('./controllers/usuarioController');
 //const veiculoController = require('./controllers/veiculoController');
@@ -31,6 +35,9 @@ app.get('/', (req, res) => {
 
 app.use('/usuarios', usuarioRoutes); // Rotas de usuários
 app.use('/veiculo', veiculoRoutes); // Rotas de veículos
+//app.use('/viagens', viagemRoutes); // Rotas de viagens
+app.use('/ocorrencia', ocorrenciaRoutes); // Rotas de ocorrencia
+//app.use('/setor', setorRoutes); // Rotas de setor
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
