@@ -3,6 +3,6 @@ const router = express.Router();
 const ocorrenciaController = require('../controllers/ocorrenciaController');
 
 // Rota para adicionar um novo usuário
-router.post('/adicionar-ocorrencia', ocorrenciaController);
+router.post('/adicionar-ocorrencia', ocorrenciaController.adicionarOcorrencia);
 
 module.exports = router;
