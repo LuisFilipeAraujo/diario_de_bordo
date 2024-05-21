@@ -13,3 +13,13 @@ exports.adicionarUsuario = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar usuario' });
   }
 };
+
+exports.listarUsuario = async (req, res) => {
+  try {
+      const usuarios = await Usuario.findAll();
+      res.status(200).json(usuarios);
+  } catch (error) {
+      console.error('Erro ao listar usuários:', error);
+      res.status(500).json({ message: 'Erro ao listar usuários' });
+  }
+};
