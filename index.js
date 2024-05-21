@@ -7,6 +7,7 @@ const veiculoRoutes = require('./routes/veiculoRoutes');
 const viagemRoutes = require('./routes/viagemRoutes');
 const ocorrenciaRoutes = require('./routes/ocorrenciaRoutes');
 const setorRoutes = require('./routes/setorRoutes');
+const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 
 const sequelize = require('./config/database');
 //const usuarioController = require('./controllers/usuarioController');
@@ -41,6 +42,7 @@ app.use('/veiculo', veiculoRoutes); // Rotas de veículos
 app.use('/viagem', viagemRoutes); // Rotas de viagens
 app.use('/ocorrencia', ocorrenciaRoutes); // Rotas de ocorrencia
 app.use('/setor', setorRoutes); // Rotas de setor
+app.use('/viagem_ocorrencia', viagem_ocorrenciaRoutes); // Rotas de viagem_ocorrencia (tabela intermediária n:n)
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
