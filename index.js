@@ -11,6 +11,9 @@ const setorRoutes = require('./routes/setorRoutes');
 const sequelize = require('./config/database');
 //const usuarioController = require('./controllers/usuarioController');
 //const veiculoController = require('./controllers/veiculoController');
+//const viagemController = require('./controllers/viagemController');
+//const ocorrenciaController = require('./controllers/ocorrenciaController');
+//const setorController = require('./controllers/setorController');
 
 
 
@@ -35,9 +38,9 @@ app.get('/', (req, res) => {
 
 app.use('/usuarios', usuarioRoutes); // Rotas de usuários
 app.use('/veiculo', veiculoRoutes); // Rotas de veículos
-//app.use('/viagens', viagemRoutes); // Rotas de viagens
+app.use('/viagem', viagemRoutes); // Rotas de viagens
 app.use('/ocorrencia', ocorrenciaRoutes); // Rotas de ocorrencia
-//app.use('/setor', setorRoutes); // Rotas de setor
+app.use('/setor', setorRoutes); // Rotas de setor
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
