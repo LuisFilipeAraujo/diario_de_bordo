@@ -12,3 +12,13 @@ exports.adicionarVeiculo = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar veículo' });
   }
 };
+
+exports.listarVeiculo = async (req, res) => {
+  try {
+      const veiculos = await Veiculo.findAll();
+      res.status(200).json(veiculos);
+  } catch (error) {
+      console.error('Erro ao listar veículos:', error);
+      res.status(500).json({ message: 'Erro ao listar veículos' });
+  }
+};
