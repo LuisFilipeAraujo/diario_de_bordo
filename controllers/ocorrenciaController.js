@@ -23,3 +23,17 @@ exports.listarOcorrencia = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar ocorrências' });
   }
 };
+
+exports.buscarOcorrenciaPorID = async (req, res) => {
+  try {
+      const ocorrencia = await Ocorrencia.findByPk(req.params.id);
+      if (ocorrencia) {
+          res.status(200).json(ocorrencia);
+      } else {
+          res.status(404).json({ message: 'Ocorrência não encontrada' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar ocorrência:', error);
+      res.status(500).json({ message: 'Erro ao buscar ocorrência' });
+  }
+};
