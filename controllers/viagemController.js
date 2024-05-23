@@ -13,3 +13,13 @@ exports.adicionarViagem = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar viagem' });
   }
 };
+
+exports.listarViagem = async (req, res) => {
+  try {
+      const viagem = await Viagem.findAll();
+      res.status(200).json(viagem);
+  } catch (error) {
+      console.error('Erro ao listar viagens:', error);
+      res.status(500).json({ message: 'Erro ao listar viagens' });
+  }
+};
