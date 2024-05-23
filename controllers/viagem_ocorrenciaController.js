@@ -13,3 +13,13 @@ exports.adicionarViagem_ocorrencia = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar viagem_ocorrencia(tabela intermediária de n:n)' });
   }
 };
+
+exports.listarViagem_ocorrencia = async (req, res) => {
+  try {
+      const viagem_ocorrencia = await Viagem_ocorrencia.findAll();
+      res.status(200).json(viagem_ocorrencia);
+  } catch (error) {
+      console.error('Erro ao listar viagem_ocorrencia (tabela intermediária n:n):', error);
+      res.status(500).json({ message: 'Erro ao listar viagem_ocorrencia (tabela intermediária n:n)' });
+  }
+};
