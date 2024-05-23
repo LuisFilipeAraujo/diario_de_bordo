@@ -22,3 +22,17 @@ exports.listarVeiculo = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar veículos' });
   }
 };
+
+exports.buscarVeiculoPorID = async (req, res) => {
+  try {
+      const veiculo = await Veiculo.findByPk(req.params.id);
+      if (veiculo) {
+          res.status(200).json(veiculo);
+      } else {
+          res.status(404).json({ message: 'Veículo não encontrado' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar veículo:', error);
+      res.status(500).json({ message: 'Erro ao buscar veículo' });
+  }
+};

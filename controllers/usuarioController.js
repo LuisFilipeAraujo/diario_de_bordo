@@ -23,3 +23,17 @@ exports.listarUsuario = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar usuários' });
   }
 };
+
+exports.buscarUsuarioPorID = async (req, res) => {
+  try {
+      const usuarios = await Usuario.findByPk(req.params.id);
+      if (usuarios) {
+          res.status(200).json(usuarios);
+      } else {
+          res.status(404).json({ message: 'Usuário não encontrado' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+      res.status(500).json({ message: 'Erro ao buscar usuário' });
+  }
+};

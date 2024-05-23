@@ -8,4 +8,7 @@ router.post('/adicionar-veiculos', veiculoController.adicionarVeiculo);
 // Rota para listar todos os veículos
 router.get('/listar-veiculos', veiculoController.listarVeiculo);
 
+//Rota para buscar Veiculo por ID (PK)
+router.get('/get-veiculos/:id', veiculoController.buscarVeiculoPorID);
+
 module.exports = router;
