@@ -13,3 +13,13 @@ exports.adicionarSetor = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar setor' });
   }
 };
+
+exports.listarSetor = async (req, res) => {
+  try {
+      const setor = await Setor.findAll();
+      res.status(200).json(setor);
+  } catch (error) {
+      console.error('Erro ao listar setores:', error);
+      res.status(500).json({ message: 'Erro ao listar setores' });
+  }
+};
