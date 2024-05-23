@@ -13,3 +13,13 @@ exports.adicionarOcorrencia = async (req, res) => {
     res.status(500).json({ message: 'Erro ao adicionar Ocorrencia' });
   }
 };
+
+exports.listarOcorrencia = async (req, res) => {
+  try {
+      const ocorrencia = await Ocorrencia.findAll();
+      res.status(200).json(ocorrencia);
+  } catch (error) {
+      console.error('Erro ao listar ocorrências:', error);
+      res.status(500).json({ message: 'Erro ao listar ocorrências' });
+  }
+};

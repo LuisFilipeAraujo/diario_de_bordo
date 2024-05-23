@@ -5,4 +5,6 @@ const ocorrenciaController = require('../controllers/ocorrenciaController');
 // Rota para adicionar uma nova ocorrencia
 router.post('/adicionar-ocorrencia', ocorrenciaController.adicionarOcorrencia);
 
+router.get('/listar-ocorrencias', ocorrenciaController.listarOcorrencia);
+
 module.exports = router;
