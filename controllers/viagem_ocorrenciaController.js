@@ -23,3 +23,17 @@ exports.listarViagem_ocorrencia = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar viagem_ocorrencia (tabela intermediária n:n)' });
   }
 };
+
+exports.buscarViagem_ocorrenciaPorID = async (req, res) => {
+  try {
+      const viagem_ocorrencia = await Viagem_ocorrencia.findByPk(req.params.id);
+      if (viagem_ocorrencia) {
+          res.status(200).json(viagem_ocorrencia);
+      } else {
+          res.status(404).json({ message: 'Viagem_ocorrencia (tabela intermediária n:n) não encontrada' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar viagem_ocorrencia (tabela intermediária n:n):', error);
+      res.status(500).json({ message: 'Erro ao buscar viagem_ocorrencia (tabela intermediária n:n)' });
+  }
+};

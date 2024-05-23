@@ -23,3 +23,17 @@ exports.listarSetor = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar setores' });
   }
 };
+
+exports.buscarSetorPorID = async (req, res) => {
+  try {
+      const setor = await Setor.findByPk(req.params.id);
+      if (setor) {
+          res.status(200).json(setor);
+      } else {
+          res.status(404).json({ message: 'Setor não encontrado' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar setor:', error);
+      res.status(500).json({ message: 'Erro ao buscar setor' });
+  }
+};

@@ -23,3 +23,17 @@ exports.listarViagem = async (req, res) => {
       res.status(500).json({ message: 'Erro ao listar viagens' });
   }
 };
+
+exports.buscarViagemPorID = async (req, res) => {
+  try {
+      const viagem = await Viagem.findByPk(req.params.id);
+      if (viagem) {
+          res.status(200).json(viagem);
+      } else {
+          res.status(404).json({ message: 'Viagem não encontrado' });
+      }
+  } catch (error) {
+      console.error('Erro ao buscar viagem:', error);
+      res.status(500).json({ message: 'Erro ao buscar viagem' });
+  }
+};
