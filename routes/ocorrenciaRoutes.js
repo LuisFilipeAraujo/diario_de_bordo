@@ -11,4 +11,7 @@ router.get('/listar-ocorrencias', ocorrenciaController.listarOcorrencia);
 //Rota para buscar Ocorrência por ID (PK)
 router.get('/get-ocorrencia/:id', ocorrenciaController.buscarOcorrenciaPorID);
 
+// Rota PATCH para editar ocorrência
+router.patch('/editar-ocorrencia/:ocorrencia_ID', ocorrenciaController.editarOcorrencia);
+
 module.exports = router;
