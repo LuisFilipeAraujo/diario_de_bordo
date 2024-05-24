@@ -11,4 +11,7 @@ router.get('/listar-usuarios', usuarioController.listarUsuario);
 //Rota para buscar usuário por ID (PK)
 router.get('/get-usuarios/:id', usuarioController.buscarUsuarioPorID);
 
+// Rota PATCH para editar usuário
+router.patch('/editar-usuarios/:usuario_ID', usuarioController.editarUsuario);
+
 module.exports = router;

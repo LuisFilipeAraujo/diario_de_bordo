@@ -11,4 +11,7 @@ router.get('/listar-veiculos', veiculoController.listarVeiculo);
 //Rota para buscar Veiculo por ID (PK)
 router.get('/get-veiculos/:id', veiculoController.buscarVeiculoPorID);
 
+// Rota PATCH para editar veículo
+router.patch('/editar-veiculos/:veiculo_ID', veiculoController.editarVeiculo);
+
 module.exports = router;

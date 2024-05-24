@@ -1,5 +1,6 @@
 const Veiculo = require('../models/veiculo');
 
+//POST
 exports.adicionarVeiculo = async (req, res) => {
   try {
     const { marca, modelo, placa, setor_ID } = req.body;
@@ -13,6 +14,7 @@ exports.adicionarVeiculo = async (req, res) => {
   }
 };
 
+//GET ALL
 exports.listarVeiculo = async (req, res) => {
   try {
       const veiculos = await Veiculo.findAll();
@@ -23,6 +25,7 @@ exports.listarVeiculo = async (req, res) => {
   }
 };
 
+//GET por ID
 exports.buscarVeiculoPorID = async (req, res) => {
   try {
       const veiculo = await Veiculo.findByPk(req.params.id);
@@ -34,5 +37,26 @@ exports.buscarVeiculoPorID = async (req, res) => {
   } catch (error) {
       console.error('Erro ao buscar veículo:', error);
       res.status(500).json({ message: 'Erro ao buscar veículo' });
+  }
+};
+
+// PATCH
+exports.editarVeiculo = async (req, res) => {
+  try {
+      const { veiculo_ID } = req.params;
+      const atualizacoes = req.body;
+
+      const veiculo = await Veiculo.findByPk(veiculo_ID);
+
+      if (!veiculo) {
+          return res.status(404).json({ message: 'Veículo não encontrado' });
+      }
+
+      await veiculo.update(atualizacoes);
+      
+      res.status(200).json({ message: 'Veículo atualizado com sucesso', veiculo });
+  } catch (error) {
+      console.error('Erro ao atualizar veículo:', error);
+      res.status(500).json({ message: 'Erro ao atualizar veículo' });
   }
 };
