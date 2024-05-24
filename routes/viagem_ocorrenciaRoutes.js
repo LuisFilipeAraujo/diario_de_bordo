@@ -11,4 +11,7 @@ router.get('/listar', viagem_ocorrenciaController.listarViagem_ocorrencia);
 //Rota para buscar uma viagem especifica por ID (PK)
 router.get('/get/:id', viagem_ocorrenciaController.buscarViagem_ocorrenciaPorID);
 
+// Rota PATCH para editar viagem_ocorrencia
+router.patch('/editar/:viagem_ocorrencia_ID', viagem_ocorrenciaController.editarViagem_ocorrencia);
+
 module.exports = router;
