@@ -1,5 +1,6 @@
 const Viagem = require('../models/viagem');
 
+//POST
 exports.adicionarViagem = async (req, res) => {
   try {
     const { veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada} = req.body;
@@ -14,6 +15,7 @@ exports.adicionarViagem = async (req, res) => {
   }
 };
 
+//GET ALL
 exports.listarViagem = async (req, res) => {
   try {
       const viagem = await Viagem.findAll();
@@ -24,6 +26,7 @@ exports.listarViagem = async (req, res) => {
   }
 };
 
+//GET por ID
 exports.buscarViagemPorID = async (req, res) => {
   try {
       const viagem = await Viagem.findByPk(req.params.id);
@@ -35,5 +38,26 @@ exports.buscarViagemPorID = async (req, res) => {
   } catch (error) {
       console.error('Erro ao buscar viagem:', error);
       res.status(500).json({ message: 'Erro ao buscar viagem' });
+  }
+};
+
+// PATCH
+exports.editarViagem = async (req, res) => {
+  try {
+      const { viagem_ID } = req.params;
+      const atualizacoes = req.body;
+
+      const viagem = await Viagem.findByPk(viagem_ID);
+
+      if (!viagem) {
+          return res.status(404).json({ message: 'Viagem não encontrada' });
+      }
+
+      await viagem.update(atualizacoes);
+      
+      res.status(200).json({ message: 'Viagem atualizada com sucesso', viagem });
+  } catch (error) {
+      console.error('Erro ao atualizar viagem:', error);
+      res.status(500).json({ message: 'Erro ao atualizar viagem' });
   }
 };
