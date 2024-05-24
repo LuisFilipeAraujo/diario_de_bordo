@@ -1,5 +1,6 @@
 const Setor = require('../models/setor');
 
+//POST
 exports.adicionarSetor = async (req, res) => {
   try {
     const { nome_setor } = req.body;
@@ -14,6 +15,7 @@ exports.adicionarSetor = async (req, res) => {
   }
 };
 
+//GET ALL
 exports.listarSetor = async (req, res) => {
   try {
       const setor = await Setor.findAll();
@@ -24,6 +26,7 @@ exports.listarSetor = async (req, res) => {
   }
 };
 
+//GET por ID
 exports.buscarSetorPorID = async (req, res) => {
   try {
       const setor = await Setor.findByPk(req.params.id);
@@ -35,5 +38,26 @@ exports.buscarSetorPorID = async (req, res) => {
   } catch (error) {
       console.error('Erro ao buscar setor:', error);
       res.status(500).json({ message: 'Erro ao buscar setor' });
+  }
+};
+
+// PATCH
+exports.editarSetor = async (req, res) => {
+  try {
+      const { setor_ID } = req.params;
+      const atualizacoes = req.body;
+
+      const setor = await Setor.findByPk(setor_ID);
+
+      if (!setor) {
+          return res.status(404).json({ message: 'Setor não encontrado' });
+      }
+
+      await setor.update(atualizacoes);
+      
+      res.status(200).json({ message: 'Setor atualizado com sucesso', setor });
+  } catch (error) {
+      console.error('Erro ao atualizar setor:', error);
+      res.status(500).json({ message: 'Erro ao atualizar setor' });
   }
 };

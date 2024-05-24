@@ -11,4 +11,7 @@ router.get('/listar-setor', setorController.listarSetor);
 //Rota para buscar setor por ID (PK)
 router.get('/get-setor/:id', setorController.buscarSetorPorID);
 
+// Rota PATCH para editar setor
+router.patch('/editar-setor/:setor_ID', setorController.editarSetor);
+
 module.exports = router;
