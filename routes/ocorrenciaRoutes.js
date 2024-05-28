@@ -3,15 +3,15 @@ const router = express.Router();
 const ocorrenciaController = require('../controllers/ocorrenciaController');
 
 // Rota para adicionar uma nova ocorrencia
-router.post('/adicionar-ocorrencia', ocorrenciaController.adicionarOcorrencia);
+router.post('/', ocorrenciaController.adicionarOcorrencia);
 
 //Rota para buscar todas as Ocorrências
-router.get('/listar-ocorrencias', ocorrenciaController.listarOcorrencia);
+router.get('/', ocorrenciaController.listarOcorrencia);
 
 //Rota para buscar Ocorrência por ID (PK)
-router.get('/get-ocorrencia/:id', ocorrenciaController.buscarOcorrenciaPorID);
+router.get('/:id', ocorrenciaController.buscarOcorrenciaPorID);
 
 // Rota PATCH para editar ocorrência
-router.patch('/editar-ocorrencia/:ocorrencia_ID', ocorrenciaController.editarOcorrencia);
+router.patch('/:id', ocorrenciaController.editarOcorrencia);
 
 module.exports = router;

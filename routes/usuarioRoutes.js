@@ -3,15 +3,15 @@ const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
 
 // Rota para adicionar um novo usuário
-router.post('/adicionar-usuarios', usuarioController.adicionarUsuario);
+router.post('/', usuarioController.adicionarUsuario);
 
 // Rota para listar todos os usuários
-router.get('/listar-usuarios', usuarioController.listarUsuario);
+router.get('/', usuarioController.listarUsuario);
 
 //Rota para buscar usuário por ID (PK)
-router.get('/get-usuarios/:id', usuarioController.buscarUsuarioPorID);
+router.get('/:id', usuarioController.buscarUsuarioPorID);
 
 // Rota PATCH para editar usuário
-router.patch('/editar-usuarios/:usuario_ID', usuarioController.editarUsuario);
+router.patch('/:id', usuarioController.editarUsuario);
 
 module.exports = router;
