@@ -89,13 +89,7 @@ app.get('/viagens/adicionar-chegada', (req, res) => {
 });
 
 
-/*app.post('/login', (req, res) => {
-    // Ainda precisa adicionar as credenciais de login e valida-las
-    // Se as credenciais estiverem corretas, 
-    // redireciona para a página de menu do motorista ou menu Adm(no momento só menuMotorista rs)
-    res.redirect('motoristas/menu-motorista');
-});*/
-//Nova rota para fazer autenticação de usuários
+//Rota para fazer autenticação de usuários
 app.post('/login', loginController.login);
 
 
