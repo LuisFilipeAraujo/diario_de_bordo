@@ -9,6 +9,8 @@ const ocorrenciaRoutes = require('./routes/ocorrenciaRoutes');
 const setorRoutes = require('./routes/setorRoutes');
 const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 
+const loginController = require('./controllers/loginController');
+
 const sequelize = require('./config/database');
 //const usuarioController = require('./controllers/usuarioController');
 //const veiculoController = require('./controllers/veiculoController');
@@ -36,6 +38,8 @@ app.get('/', (req, res) => {
 //app.post('/usuarios', usuarioController.adicionarUsuario);
 // Rota para adicionar um novo veiculo
 //app.post('/veiculo', veiculoController.adicionarVeiculo);
+
+
 
 app.use('/usuarios', usuarioRoutes); // Rotas de usuários
 app.use('/veiculo', veiculoRoutes); // Rotas de veículos
@@ -85,13 +89,14 @@ app.get('/viagens/adicionar-chegada', (req, res) => {
 });
 
 
-app.post('/login', (req, res) => {
+/*app.post('/login', (req, res) => {
     // Ainda precisa adicionar as credenciais de login e valida-las
     // Se as credenciais estiverem corretas, 
     // redireciona para a página de menu do motorista ou menu Adm(no momento só menuMotorista rs)
     res.redirect('motoristas/menu-motorista');
-});
-
+});*/
+//Nova rota para fazer autenticação de usuários
+app.post('/login', loginController.login);
 
 
 app.listen(80, ()=>{
