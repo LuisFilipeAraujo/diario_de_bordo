@@ -7,3 +7,5 @@ A capacidade de registrar a quilometragem percorrida em cada viagem possibilita 
 A automatização dos processos relacionados ao controle de veículos proporciona maior agilidade na obtenção de informações, reduzindo a carga de trabalho administrativo. Além disso, a transparência nos registros contribui para a confiança interna e externa da Secretaria de Saúde.
 A solução será obtida a partir da análise das demandas da própria secretaria e dos motoristas envolvidos por meio de reuniões com os responsáveis. Tais reuniões permitirão o devido levantamento de requisitos funcionais e não funcionais além de garantir que os objetivos do cliente sejam alcançados e priorizados.
 A implementação se dará da seguinte maneira: Linguagem HTML para marcação, CSS para estilização, Javascript como linguagem de programação utilizando o ambiente de execução Node.js, o framework express.js, EJS como engine Template, e MySQL para persistência dos dados
+
+![image](https://github.com/LuisFilipeAraujo/diario_de_bordo/assets/81663096/508af0ab-d74a-4ab3-9da7-47c365b8c519)
