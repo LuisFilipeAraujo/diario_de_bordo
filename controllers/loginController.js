@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
         if (!usuario) {
             return res.status(401).send('Credenciais inválidas');
         }
-
+        req.session.user = usuario.toJSON();
         // Redirecionando com base no tipo de usuário
         if (usuario.tipo_Usuario === 'motorista') {
             return res.render('motoristas/menu-motorista', { user: usuario.toJSON() });
