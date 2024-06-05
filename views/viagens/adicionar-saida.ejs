@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adiconar saída</title>
+    <title>Adicionar saída</title>
 </head>
 <body>
-    <h1>Adiconar saída</h1>
+    <h1>Adicionar os detalhes da saída</h1>
+    <form action="/adicionar-saida" method="post">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" value="<%= user.nome %>">
+        <label for="username">Id de Usuário:</label>
+        <input type="text" id="username" name="username" value="<%= user.login %>" readonly>
+        
+        <!--<label for="veiculo">Veículo:</label>
+        <select id="veiculo" name="veiculo_ID">
+            <% //veiculos.forEach(veiculo => { %>
+                <option value="<%= //veiculo.id %>"><%= //veiculo.modelo %></option>
+            <% //}) %>-->
+        </select>
+
+        <label for="itineratio">Itineratio:</label>
+        <input type="text" id="itineratio" name="itineratio">
+
+        <label for="km_inicial">Quilometragem Inicial:</label>
+        <input type="integer" id="km_inicial" name="km_inicial">
+
+        <label for="hora_inicial">Data e hora de Saída:</label>
+        <input type="datetime" id="hora_inicial" name="hora_inicial">
+        
+        <button type="submit">Confirmar</button>
+    </form>
     <button onclick="location.href='/login'">Voltar</button>
 </body>
 </html>
