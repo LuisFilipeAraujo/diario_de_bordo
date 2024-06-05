@@ -10,15 +10,9 @@ const setorRoutes = require('./routes/setorRoutes');
 const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 
 const loginController = require('./controllers/loginController');
+const session = require('express-session');
 
-const sequelize = require('./config/database');
-//const usuarioController = require('./controllers/usuarioController');
-//const veiculoController = require('./controllers/veiculoController');
-//const viagemController = require('./controllers/viagemController');
-//const ocorrenciaController = require('./controllers/ocorrenciaController');
-//const setorController = require('./controllers/setorController');
-
-
+//const sequelize = require('./config/database');
 
 const app=express();//inicializando o express
 
@@ -30,16 +24,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'seu-segredo-aqui',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // false em desenvolvimento
+}));
+
+// middleware para verificar a sessão em cada requisição
+app.use((req, res, next) => {
+    console.log('Sessão atual:', req.session);
+    next();
+});
+
 app.get('/', (req, res) => {
     res.render('login');
 });
-
-// Rota para adicionar um novo usuário
-//app.post('/usuarios', usuarioController.adicionarUsuario);
-// Rota para adicionar um novo veiculo
-//app.post('/veiculo', veiculoController.adicionarVeiculo);
-
-
 
 app.use('/usuarios', usuarioRoutes); // Rotas de usuários
 app.use('/veiculo', veiculoRoutes); // Rotas de veículos
@@ -79,9 +79,7 @@ app.get('/viagens/historico', (req, res) => {
 });
 
 // Rota para a página adicionar-saida
-app.get('/viagens/adicionar-saida', (req, res) => {
-    res.render('viagens/adicionar-saida');
-});
+app.get('/viagens/adicionar-saida', loginController.exibeCredenciais); // Atualizada
 
 // Rota para a página adicionar-chegada
 app.get('/viagens/adicionar-chegada', (req, res) => {
@@ -92,6 +90,8 @@ app.get('/viagens/adicionar-chegada', (req, res) => {
 //Rota para fazer autenticação de usuários
 app.post('/login', loginController.login);
 
+//Rota para mostrar credenciais na tela do form de adicionar saida
+app.get('/viagens/adicionar-saida', loginController.exibeCredenciais);
 
 app.listen(80, ()=>{
     console.log('Working on port 80!')
