@@ -24,3 +24,28 @@ exports.login = async (req, res) => {
         res.status(500).send('Erro ao autenticar usuário');
     }
 };
+
+//GET para exibir credenciais
+exports.exibeCredenciais = async (req, res) => {
+    try {
+        const usuario = req.session.user;
+        if (!usuario) {
+            return res.redirect('/login');
+        }
+        res.render('viagens/adicionar-saida', { user: usuario });
+    } catch (error) {
+        console.error('Erro ao exibir credenciais:', error);
+        res.status(500).send('Erro ao exibir credenciais');
+    }
+};
+
+//GET para encerrar sessão
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Erro ao encerrar sessão:', err);
+            return res.status(500).send('Erro ao encerrar sessão');
+        }
+        res.redirect('/login');
+    });
+};
