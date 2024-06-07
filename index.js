@@ -12,7 +12,6 @@ const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 const loginController = require('./controllers/loginController');
 const session = require('express-session');
 
-//const sequelize = require('./config/database');
 
 const app=express();//inicializando o express
 
