@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuarios');
+const Veiculo = require('../models/veiculo');
 
 exports.login = async (req, res) => {
     try {
@@ -32,7 +33,10 @@ exports.exibeCredenciais = async (req, res) => {
         if (!usuario) {
             return res.redirect('/login');
         }
-        res.render('viagens/adicionar-saida', { user: usuario });
+        // Buscar todos os veículos
+        const veiculos = await Veiculo.findAll();
+
+        res.render('viagens/adicionar-saida', { user: usuario, veiculos: veiculos });
     } catch (error) {
         console.error('Erro ao exibir credenciais:', error);
         res.status(500).send('Erro ao exibir credenciais');
