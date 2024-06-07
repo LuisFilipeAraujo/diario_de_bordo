@@ -5,7 +5,10 @@ exports.adicionarViagem = async (req, res) => {
   try {
     const { veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada} = req.body;
     
-  
+    // Verificar campos obrigatórios
+    if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataSaida || !kmSaida) {
+      return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
+    }
     const novaViagem = await Viagem.create({ veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada });
     
     res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
