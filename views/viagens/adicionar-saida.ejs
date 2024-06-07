@@ -9,15 +9,20 @@
     <h1>Adicionar os detalhes da saída</h1>
     <form action="/adicionar-saida" method="post">
         <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" value="<%= user.nome %>">
+        <input type="text" id="name" name="name" value="<%= user.nome %>" readonly>
         <label for="username">Id de Usuário:</label>
         <input type="text" id="username" name="username" value="<%= user.login %>" readonly>
+        <label for="veiculo">Id de Usuário:</label>
+        <input type="text" id="veiculo" name="veiculo" readonly>
         
-        <!--<label for="veiculo">Veículo:</label>
-        <select id="veiculo" name="veiculo_ID">
-            <% //veiculos.forEach(veiculo => { %>
-                <option value="<%= //veiculo.id %>"><%= //veiculo.modelo %></option>
-            <% //}) %>-->
+        <!-- Dropdown list para veículos -->
+        <label for="veiculo">Selecione o veículo:</label>
+        <select name="veiculo_ID" id="veiculo">
+            <% veiculos.forEach(function(veiculo) { %>
+                <option value="<%= veiculo.veiculo_ID %>">
+                    <%= veiculo.marca %> - <%= veiculo.placa %>
+                </option>
+            <% }); %>
         </select>
 
         <label for="itineratio">Itineratio:</label>
