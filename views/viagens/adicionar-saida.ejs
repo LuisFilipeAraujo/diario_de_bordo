@@ -4,6 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar saída</title>
+    <script>
+        function salvarDados() {
+            const veiculo_ID = document.getElementById('veiculo').value;
+            const itinerario = document.getElementById('itinerario').value;
+            const servico = document.getElementById('servico').value;
+            const kmInicial = document.getElementById('km_inicial').value;
+            const dataHoraSaida = document.getElementById('hora_inicial').value;
+            const usuario_ID = document.getElementById('username').value;
+
+            fetch('/viagem/adicionar-saida', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    veiculo_ID,
+                    itinerario,
+                    servico,
+                    kmInicial,
+                    dataHoraSaida,
+                    usuario_ID
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Sucesso ao salvar dados de saída');
+                } else {
+                    console.error('Erro ao salvar dados de saída');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao salvar dados de saída:', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <h1>Adicionar os detalhes da saída</h1>
@@ -24,8 +59,8 @@
         </select>
 
         <!-- Dropdown list para itinerário -->
-        <label for="itineratio">Itinerário:</label>
-        <select id="itineratio" name="itineratio" required>
+        <label for="itinerario">Itinerário:</label>
+        <select id="itinerario" name="itinerario" required>
             <option value="Hospital São Francisco">Hospital São Francisco</option>
             <option value="São Paulo">São Paulo</option>
             <option value="Santa Casa">Santa Casa</option>
@@ -56,7 +91,7 @@
         <label for="hora_inicial">Data e hora de Saída:</label>
         <input type="datetime" id="hora_inicial" name="hora_inicial" required>
         
-        <button type="submit">Confirmar</button>
+        <button type="button" onclick="salvarDados()">Confirmar</button>
     </form>
     <button onclick="location.href='/login'">Voltar</button>
 </body>

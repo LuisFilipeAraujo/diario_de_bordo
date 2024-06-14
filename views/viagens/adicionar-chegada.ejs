@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adiconar chegada</title>
+    <script>
+        function salvarDados() {
+            const km_final = document.getElementById('km_final').value;
+            const hora_final = document.getElementById('hora_final').value;
+
+            fetch('/viagem/adicionar-chegada', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    km_final,
+                    hora_final
+                }),
+            })
+        
+            .catch(error => {
+                console.error('Erro ao salvar dados de chegada:', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <h1>Adicionar chegada</h1>
@@ -19,7 +40,7 @@
         <label for="hora_final">Data e hora de Chegada:</label>
         <input type="datetime" id="hora_final" name="hora_final" required>
 
-        <button type="submit">Confirmar</button>
+        <button type="button" onclick="salvarDados()">Confirmar</button>
     </form>
     <button onclick="location.href='/login'">Voltar</button>
 </body>
