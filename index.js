@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const veiculoRoutes = require('./routes/veiculoRoutes');
 const viagemRoutes = require('./routes/viagemRoutes');
@@ -21,6 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 // middleware body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
