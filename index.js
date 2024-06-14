@@ -95,6 +95,12 @@ app.post('/login', loginController.login);
 //Rota para mostrar credenciais na tela do form de adicionar saida
 app.get('/viagens/adicionar-saida', loginController.exibeCredenciais);
 
+/*//Rotas para a chegada
+app.get('/viagens/adicionar-chegada', (req, res) => {
+    res.render('viagens/adicionar-chegada');
+});
+app.post('/adicionar-chegada', viagemController.adicionarChegada);*/
+
 app.listen(80, ()=>{
     console.log('Working on port 80!')
 });
