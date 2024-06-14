@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adiconar Ocorrencia</title>
+    <script>
+        function salvarDados() {
+            const km_final = document.getElementById('assunto').value;
+            const hora_final = document.getElementById('envolvidos').value;
+
+            fetch('/viagem/adicionar-ocorrencia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    km_final,
+                    hora_final
+                }),
+            })
+        
+            .catch(error => {
+                console.error('Erro ao salvar dados de chegada:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Adicionar chegada</h1>
+
+    <form action="/adicionar-ocorrencia" method="post">
+
+        <label for="assunto">Assunto:</label>
+        <input type="text" id="assunto" name="assunto">
+
+        <label for="envolvidos">Envolvidos:</label>
+        <input type="text" id="envolvidos" name="envolvidos">
+
+        <button type="button" onclick="salvarDados()">Confirmar</button>
+    </form>
+
+    <button onclick="location.href='/login'">Voltar</button>
+</body>
+</html>
