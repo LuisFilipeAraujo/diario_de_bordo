@@ -11,6 +11,12 @@ exports.adicionarViagem = async (req, res) => {
     }
     const novaViagem = await Viagem.create({ veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada });
     
+    /*// Salvar dados em cookies
+    res.cookie('itinerario', itinerario);
+    res.cookie('servico', servico);
+    res.cookie('kmInicial', kmSaida);
+    res.cookie('dataHoraSaida', dataSaida);*/
+
     res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
   } catch (error) {
     console.error('Erro ao adicionar viagem:', error);
