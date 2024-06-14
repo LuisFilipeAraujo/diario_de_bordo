@@ -23,11 +23,32 @@
             <% }); %>
         </select>
 
+        <!-- Dropdown list para itinerário -->
         <label for="itineratio">Itinerário:</label>
-        <input type="text" id="itineratio" name="itineratio" required>
+        <select id="itineratio" name="itineratio" required>
+            <option value="Hospital São Francisco">Hospital São Francisco</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Santa Casa">Santa Casa</option>
+            <option value="Santa Branca">Santa Branca</option>
+            <option value="Pq. Meia Lua">Pq. Meia Lua</option>
+            <option value="Jd. Liberdade">Jd. Liberdade</option>
+            <option value="Centro">Centro</option>
+            <option value="São José dos Campos">São José dos Campos</option>
+            <option value="IFSP">IFSP</option>
+        </select>
 
+        <!-- Dropdown list para serviço -->
         <label for="servico">Serviço:</label>
-        <input type="text" id="servico" name="servico" required>
+        <select id="servico" name="servico" required>
+            <option value="Transporte de Materiais">Transporte de Materiais</option>
+            <option value="Busca de materiais">Busca de materiais</option>
+            <option value="Transporte de paciente">Transporte de paciente</option>
+            <option value="Transporte de pessoas">Transporte de pessoas</option>
+            <option value="inspecao">Inspecao</option>
+            <option value="ato de prevenção de saúde">Ato de prevenção de saúde</option>
+            <option value="oficina de manutenção">Oficina de manutenção</option>
+            <option value="vigilância sanitária">Vigilância sanitária</option>
+        </select>
 
         <label for="km_inicial">Quilometragem Inicial:</label>
         <input type="integer" id="km_inicial" name="km_inicial" required>

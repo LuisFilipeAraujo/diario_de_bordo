@@ -14,11 +14,13 @@
         <input type="text" id="username" name="username" readonly>
 
         <label for="km_final">Quilometragem final:</label>
-        <input type="integer" id="km_final" name="km_final">
+        <input type="integer" id="km_final" name="km_final" required>
 
         <label for="hora_final">Data e hora de Chegada:</label>
-        <input type="datetime" id="hora_final" name="hora_final">
+        <input type="datetime" id="hora_final" name="hora_final" required>
 
+        <button type="submit">Confirmar</button>
+    </form>
     <button onclick="location.href='/login'">Voltar</button>
 </body>
 </html>
