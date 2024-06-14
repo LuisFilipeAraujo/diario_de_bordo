@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuarios');
 const Veiculo = require('../models/veiculo');
+const Viagem = require('../models/viagem');
 
 exports.login = async (req, res) => {
     try {
@@ -35,8 +36,16 @@ exports.exibeCredenciais = async (req, res) => {
         }
         // Buscar todos os veículos
         const veiculos = await Veiculo.findAll();
+        // Buscar todos as viagens
+        const viagens = await Viagem.findAll();
 
-        res.render('viagens/adicionar-saida', { user: usuario, veiculos: veiculos });
+/*// Verificar se há dados nos cookies
+const itinerario = req.cookies.itinerario || '';
+const servico = req.cookies.servico || '';
+const kmInicial = req.cookies.kmInicial || '';
+const dataHoraSaida = req.cookies.dataHoraSaida || '';
+*/
+        res.render('viagens/adicionar-saida', { user: usuario, veiculos: veiculos, viagens:viagens });
     } catch (error) {
         console.error('Erro ao exibir credenciais:', error);
         res.status(500).send('Erro ao exibir credenciais');
