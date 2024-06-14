@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const viagemController = require('../controllers/viagemController');
+//const viagemController = require('../controllers/viagemController');
+const { viagemController } = require('../controllers/indexController');
+
 
 // Rota para adicionar uma nova viagem
 router.post('/', viagemController.adicionarViagem);
