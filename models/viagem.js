@@ -51,7 +51,7 @@ const Viagem = sequelize.define('Viagem', {
   }, {
     sequelize,
     tableName: 'viagem',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

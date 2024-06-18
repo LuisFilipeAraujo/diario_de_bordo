@@ -27,7 +27,7 @@ const Viagem_ocorrencia = sequelize.define('Viagem_ocorrencia', {
   }, {
     sequelize,
     tableName: 'viagem_ocorrencia',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

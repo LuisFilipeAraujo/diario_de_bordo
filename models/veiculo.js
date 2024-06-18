@@ -31,7 +31,7 @@ const Veiculo = sequelize.define('Veiculo', {
   }, {
     sequelize,
     tableName: 'veiculo',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

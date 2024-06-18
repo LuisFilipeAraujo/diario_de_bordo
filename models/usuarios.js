@@ -26,7 +26,8 @@ const Usuario = sequelize.define('Usuario', {
   },
   login: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   senha: {
     type: DataTypes.STRING(60),
@@ -34,7 +35,7 @@ const Usuario = sequelize.define('Usuario', {
   }
 }, {
   tableName: 'usuarios',
-  timestamps: false,
+  timestamps: true,
   indexes: [
     {
       name: "PRIMARY",

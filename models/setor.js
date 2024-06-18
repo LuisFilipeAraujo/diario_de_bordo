@@ -16,7 +16,7 @@ const Setor = sequelize.define('Setor', {
   }, {
     sequelize,
     tableName: 'setor',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",

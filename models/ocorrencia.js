@@ -19,7 +19,7 @@ const Ocorrencia = sequelize.define('Ocorrencia', {
   }, {
     sequelize,
     tableName: 'ocorrencia',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
