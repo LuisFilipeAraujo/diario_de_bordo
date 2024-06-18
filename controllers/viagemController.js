@@ -9,17 +9,22 @@ exports.adicionarSaida = async (req, res) => {
     if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataSaida || !kmSaida) {
       return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
     }
-    const novaViagem = await Viagem.create({ veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada });
-    
+   // const novaViagem = await Viagem.create({ veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada });
+   
+    // Validar o formato da data e hora
+    const dataSaidaValida = new Date(dataSaida);
+    if (isNaN(dataSaidaValida)) {
+        return res.status(400).json({ message: 'Data e hora de saída inválidas.' });
+    }
    // Salvar dados em cookies
    res.cookie('veiculo_ID', veiculo_ID, { path: '/' });
    res.cookie('itinerario', itinerario, { path: '/' });
    res.cookie('servico', servico, { path: '/' });
-   res.cookie('kmInicial', kmInicial, { path: '/' });
-   res.cookie('dataHoraSaida', dataHoraSaida, { path: '/' });
+   res.cookie('kmSaida', kmSaida, { path: '/' });
+   res.cookie('dataSaida', dataSaida, { path: '/' });
    res.cookie('usuario_ID', usuario_ID, { path: '/' });
 
-    res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
+    //res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
   } catch (error) {
     console.error('Erro ao adicionar viagem:', error);
     res.status(500).json({ message: 'Erro ao adicionar viagem' });
@@ -28,47 +33,47 @@ exports.adicionarSaida = async (req, res) => {
 
 // POST para Adicionar detalhes da chegada e salvar a viagem no banco de dados
 exports.adicionarChegada = async (req, res) => {
-  try {
-    const { km_final, hora_final } = req.body;
+    try {
+        const { kmChegada, dataChegada } = req.body;
 
-    // Recuperar dados dos cookies
-    const veiculo_ID = req.cookies.veiculo_ID;
-    const itinerario = req.cookies.itinerario;
-    const servico = req.cookies.servico;
-    const kmInicial = req.cookies.kmInicial;
-    const dataHoraSaida = req.cookies.dataHoraSaida;
-    const usuario_ID = req.cookies.usuario_ID;
+        // Recuperar dados dos cookies
+        const veiculo_ID = req.cookies.veiculo_ID;
+        const itinerario = req.cookies.itinerario;
+        const servico = req.cookies.servico;
+        const kmSaida = req.cookies.kmSaida;
+        const dataSaida = req.cookies.dataSaida;
+        const usuario_ID = req.cookies.usuario_ID;
 
-    // Verificar campos obrigatórios
-    if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataHoraSaida || !kmInicial || !km_final || !hora_final) {
-      return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
+        // Verificar campos obrigatórios
+        if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataSaida || !kmSaida || !kmChegada || !dataChegada) {
+            return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
+        }
+
+        // Criar nova viagem com os dados combinados
+        const novaViagem = await Viagem.create({
+            veiculo_ID,
+            usuario_ID,
+            itinerario,
+            servico,
+            dataSaida,
+            kmSaida,
+            dataChegada,
+            kmChegada
+        });
+
+        // Limpar os cookies após salvar no banco de dados
+        res.clearCookie('veiculo_ID', { path: '/' });
+        res.clearCookie('itinerario', { path: '/' });
+        res.clearCookie('servico', { path: '/' });
+        res.clearCookie('kmSaida', { path: '/' });
+        res.clearCookie('dataSaida', { path: '/' });
+        res.clearCookie('usuario_ID', { path: '/' });
+
+        res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
+    } catch (error) {
+        console.error('Erro ao adicionar viagem:', error);
+        res.status(500).json({ message: 'Erro ao adicionar viagem' });
     }
-
-    // Criar nova viagem com os dados combinados
-    const novaViagem = await Viagem.create({
-      veiculo_ID,
-      usuario_ID,
-      itinerario,
-      servico,
-      dataSaida: dataHoraSaida,
-      kmSaida: kmInicial,
-      dataChegada: hora_final,
-      kmChegada: km_final
-    });
-
-    // Limpar os cookies após salvar no banco de dados
-    res.clearCookie('veiculo_ID', { path: '/' });
-    res.clearCookie('itinerario', { path: '/' });
-    res.clearCookie('servico', { path: '/' });
-    res.clearCookie('kmInicial', { path: '/' });
-    res.clearCookie('dataHoraSaida', { path: '/' });
-    res.clearCookie('usuario_ID', { path: '/' });
-
-    res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
-  } catch (error) {
-    console.error('Erro ao adicionar viagem:', error);
-    res.status(500).json({ message: 'Erro ao adicionar viagem' });
-  }
 };
 
 //GET ALL
