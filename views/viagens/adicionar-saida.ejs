@@ -9,8 +9,8 @@
             const veiculo_ID = document.getElementById('veiculo').value;
             const itinerario = document.getElementById('itinerario').value;
             const servico = document.getElementById('servico').value;
-            const kmInicial = document.getElementById('km_inicial').value;
-            const dataHoraSaida = document.getElementById('hora_inicial').value;
+            const kmInicial = document.getElementById('kmSaida').value;
+            const dataHoraSaida = document.getElementById('dataSaida').value;
             const usuario_ID = document.getElementById('username').value;
 
             fetch('/viagem/adicionar-saida', {
@@ -27,13 +27,7 @@
                     usuario_ID
                 }),
             })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Sucesso ao salvar dados de saída');
-                } else {
-                    console.error('Erro ao salvar dados de saída');
-                }
-            })
+          
             .catch(error => {
                 console.error('Erro ao salvar dados de saída:', error);
             });
@@ -58,7 +52,7 @@
             <% }); %>
         </select>
 
-        <!-- Dropdown list para itinerário -->
+        <!-- Dropdown list para itinerário - usar group by-->
         <label for="itinerario">Itinerário:</label>
         <select id="itinerario" name="itinerario" required>
             <option value="Hospital São Francisco">Hospital São Francisco</option>
@@ -72,7 +66,7 @@
             <option value="IFSP">IFSP</option>
         </select>
 
-        <!-- Dropdown list para serviço -->
+        <!-- Dropdown list para serviço - usar group by -->
         <label for="servico">Serviço:</label>
         <select id="servico" name="servico" required>
             <option value="Transporte de Materiais">Transporte de Materiais</option>
@@ -85,11 +79,11 @@
             <option value="vigilância sanitária">Vigilância sanitária</option>
         </select>
 
-        <label for="km_inicial">Quilometragem Inicial:</label>
-        <input type="integer" id="km_inicial" name="km_inicial" required>
+        <label for="kmSaida">Quilometragem Inicial:</label>
+        <input type="integer" id="kmSaida" name="kmSaida" required>
 
-        <label for="hora_inicial">Data e hora de Saída:</label>
-        <input type="datetime" id="hora_inicial" name="hora_inicial" required>
+        <label for="dataSaida">Data e hora de Saída:</label>
+        <input type="datetime" id="dataSaida" name="dataSaida" required>
         
         <button type="button" onclick="salvarDados()">Confirmar</button>
     </form>

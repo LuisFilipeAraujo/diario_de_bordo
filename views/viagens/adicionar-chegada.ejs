@@ -6,8 +6,8 @@
     <title>Adiconar chegada</title>
     <script>
         function salvarDados() {
-            const km_final = document.getElementById('km_final').value;
-            const hora_final = document.getElementById('hora_final').value;
+            const km_final = document.getElementById('kmChegada').value;
+            const hora_final = document.getElementById('dataChegada').value;
 
             fetch('/viagem/adicionar-chegada', {
                 method: 'POST',
@@ -34,11 +34,11 @@
         <label for="username">Id de Usuário:</label>
         <input type="text" id="username" name="username" readonly>
 
-        <label for="km_final">Quilometragem final:</label>
-        <input type="integer" id="km_final" name="km_final" required>
+        <label for="kmChegada">Quilometragem final:</label>
+        <input type="integer" id="kmChegada" name="kmChegada" required>
 
-        <label for="hora_final">Data e hora de Chegada:</label>
-        <input type="datetime" id="hora_final" name="hora_final" required>
+        <label for="dataChegada">Data e hora de Chegada:</label>
+        <input type="datetime" id="dataChegada" name="dataChegada" required>
 
         <button type="button" onclick="salvarDados()">Confirmar</button>
     </form>
