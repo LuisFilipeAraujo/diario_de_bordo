@@ -12,6 +12,7 @@ router.post('/adicionar-saida', viagemController.adicionarSaida);
 
 // Rota para adicionar detalhes da chegada
 router.post('/adicionar-chegada', viagemController.adicionarChegada);
+router.get('/adicionar-chegada', viagemController.exibirChegada);
 
 // Rota para listar todas as viagens
 router.get('/', viagemController.listarViagem);

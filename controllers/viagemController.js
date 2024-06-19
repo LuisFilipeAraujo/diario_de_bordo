@@ -20,16 +20,31 @@ exports.getUniqueValues = async (req, res) => {
         throw error;
     }
 };
+
+exports.exibirChegada = (req, res) => {
+    try {
+        const usuario = req.session.user;
+        if (!usuario) {
+            return res.redirect('/login');
+        }
+        
+        res.render('viagens/adicionar-chegada', { user: usuario });
+    } catch (error) {
+        console.error('Erro ao exibir chegada:', error);
+        res.status(500).send('Erro ao exibir chegada');
+    }
+};
+
 //POST
 exports.adicionarSaida = async (req, res) => {
   try {
-    const { veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada} = req.body;
+    const { veiculo_ID, usuario_ID, itinerario, servico, dataSaida, kmSaida } = req.body;
     
     // Verificar campos obrigatórios
     if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataSaida || !kmSaida) {
       return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
     }
-   // const novaViagem = await Viagem.create({ veiculo_ID, usuario_ID, itinerario, servico, dataSaida, dataChegada, kmSaida, kmChegada });
+   
    
     // Validar o formato da data e hora
     const dataSaidaValida = new Date(dataSaida);
@@ -44,11 +59,11 @@ exports.adicionarSaida = async (req, res) => {
    res.cookie('dataSaida', dataSaida, { path: '/' });
    res.cookie('usuario_ID', usuario_ID, { path: '/' });
 
-    //res.status(201).json({ message: 'Viagem adicionada com sucesso', viagem: novaViagem });
-  } catch (error) {
+   res.status(201).json({ message: 'Dados de saída armazenados com sucesso.' });
+} catch (error) {
     console.error('Erro ao adicionar viagem:', error);
     res.status(500).json({ message: 'Erro ao adicionar viagem' });
-  }
+}
 };
 
 // POST para Adicionar detalhes da chegada e salvar a viagem no banco de dados
@@ -65,7 +80,7 @@ exports.adicionarChegada = async (req, res) => {
         const usuario_ID = req.cookies.usuario_ID;
 
         // Verificar campos obrigatórios
-        if (!veiculo_ID || !usuario_ID || !itinerario || !servico || !dataSaida || !kmSaida || !kmChegada || !dataChegada) {
+        if (!kmChegada || !dataChegada) {
             return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
         }
 
