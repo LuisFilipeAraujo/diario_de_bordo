@@ -38,8 +38,6 @@ exports.exibeCredenciais = async (req, res) => {
         }
         // Buscar todos os veículos
         const veiculos = await Veiculo.findAll();
-        // Buscar todos as viagens
-        //const viagens = await Viagem.findAll();
 
 // Verificar se há dados nos cookies
 const itinerario = req.cookies.itinerario || '';
