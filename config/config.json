@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root123",
+    "database": "diario_de_bordo",
+    "host": "localhost",
+    "dialect": "mysql",
+    "timezone": "-03:00",
+    "dialectOptions": {
+      "dateStrings": true,
+      "typeCast": true
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "root123",
+    "database": "diario_de_bordo_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "root123",
+    "database": "diario_de_bordo_production",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
