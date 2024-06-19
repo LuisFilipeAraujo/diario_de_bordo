@@ -9,8 +9,8 @@
             const veiculo_ID = document.getElementById('veiculo').value;
             const itinerario = document.getElementById('itinerario').value;
             const servico = document.getElementById('servico').value;
-            const kmInicial = document.getElementById('kmSaida').value;
-            const dataHoraSaida = document.getElementById('dataSaida').value;
+            const kmSaida = document.getElementById('kmSaida').value;
+            const dataSaida = document.getElementById('dataSaida').value;
             const usuario_ID = document.getElementById('username').value;
 
             fetch('/viagem/adicionar-saida', {
@@ -22,8 +22,8 @@
                     veiculo_ID,
                     itinerario,
                     servico,
-                    kmInicial,
-                    dataHoraSaida,
+                    kmSaida,
+                    dataSaida,
                     usuario_ID
                 }),
             })
@@ -52,31 +52,20 @@
             <% }); %>
         </select>
 
-        <!-- Dropdown list para itinerário - usar group by-->
+        <!-- Dropdown list para itinerário -->
         <label for="itinerario">Itinerário:</label>
         <select id="itinerario" name="itinerario" required>
-            <option value="Hospital São Francisco">Hospital São Francisco</option>
-            <option value="São Paulo">São Paulo</option>
-            <option value="Santa Casa">Santa Casa</option>
-            <option value="Santa Branca">Santa Branca</option>
-            <option value="Pq. Meia Lua">Pq. Meia Lua</option>
-            <option value="Jd. Liberdade">Jd. Liberdade</option>
-            <option value="Centro">Centro</option>
-            <option value="São José dos Campos">São José dos Campos</option>
-            <option value="IFSP">IFSP</option>
+            <% itinerarios.forEach(function(itinerario) { %>
+                <option value="<%= itinerario %>"><%= itinerario %></option>
+            <% }); %>
         </select>
 
-        <!-- Dropdown list para serviço - usar group by -->
+        <!-- Dropdown list para serviço -->
         <label for="servico">Serviço:</label>
         <select id="servico" name="servico" required>
-            <option value="Transporte de Materiais">Transporte de Materiais</option>
-            <option value="Busca de materiais">Busca de materiais</option>
-            <option value="Transporte de paciente">Transporte de paciente</option>
-            <option value="Transporte de pessoas">Transporte de pessoas</option>
-            <option value="inspecao">Inspecao</option>
-            <option value="ato de prevenção de saúde">Ato de prevenção de saúde</option>
-            <option value="oficina de manutenção">Oficina de manutenção</option>
-            <option value="vigilância sanitária">Vigilância sanitária</option>
+            <% servicos.forEach(function(servico) { %>
+                <option value="<%= servico %>"><%= servico %></option>
+            <% }); %>
         </select>
 
         <label for="kmSaida">Quilometragem Inicial:</label>

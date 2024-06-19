@@ -6,8 +6,8 @@
     <title>Adiconar chegada</title>
     <script>
         function salvarDados() {
-            const km_final = document.getElementById('kmChegada').value;
-            const hora_final = document.getElementById('dataChegada').value;
+            const kmChegada = document.getElementById('kmChegada').value;
+            const dataChegada = document.getElementById('dataChegada').value;
 
             fetch('/viagem/adicionar-chegada', {
                 method: 'POST',
@@ -15,8 +15,8 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    km_final,
-                    hora_final
+                    kmChegada,
+                    dataChegada
                 }),
             })
         
