@@ -1,5 +1,25 @@
 const Viagem = require('../models/viagem');
+const { Sequelize } = require('sequelize');
 
+exports.getUniqueValues = async (req, res) => {
+    try {
+        const itinerarios = await Viagem.findAll({
+            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('itinerario')), 'itinerario']],
+        });
+
+        const servicos = await Viagem.findAll({
+            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('servico')), 'servico']],
+        });
+
+        return {
+            itinerarios: itinerarios.map(it => it.getDataValue('itinerario')),
+            servicos: servicos.map(sv => sv.getDataValue('servico')),
+        };
+    } catch (error) {
+        console.error('Erro ao buscar valores únicos:', error);
+        throw error;
+    }
+};
 //POST
 exports.adicionarSaida = async (req, res) => {
   try {
