@@ -38,6 +38,15 @@ app.use((req, res, next) => {
     console.log('Sessão atual:', req.session);
     next();
 });
+// Middleware para definir o usuário em todas as views
+app.use((req, res, next) => {
+    if (req.session && req.session.user) {
+        res.locals.user = req.session.user;
+    } else {
+        res.locals.user = null;
+    }
+    next();
+});
 
 app.get('/', (req, res) => {
     res.render('login');
