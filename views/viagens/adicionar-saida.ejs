@@ -7,8 +7,8 @@
     <script>
         function salvarDados() {
             const veiculo_ID = document.getElementById('veiculo').value;
-            const itinerario = document.getElementById('itinerario').value;
-            const servico = document.getElementById('servico').value;
+            const itinerario = document.getElementById('itinerario').value === 'Outro' ? document.getElementById('novoItinerario').value : document.getElementById('itinerario').value;
+            const servico = document.getElementById('servico').value === 'Outro' ? document.getElementById('novoServico').value : document.getElementById('servico').value;
             const kmSaida = document.getElementById('kmSaida').value;
             const dataSaida = document.getElementById('dataSaida').value;
             const usuario_ID = document.getElementById('username').value;
@@ -32,11 +32,22 @@
                 console.error('Erro ao salvar dados de saída:', error);
             });
         }
+
+        function mostrarCampoOutro(selectElement, campoOutroID) {
+            const campoOutro = document.getElementById(campoOutroID);
+            if (selectElement.value === 'Outro') {
+                campoOutro.style.display = 'block';
+                campoOutro.required = true;
+            } else {
+                campoOutro.style.display = 'none';
+                campoOutro.required = false;
+            }
+        }
     </script>
 </head>
 <body>
     <h1>Adicionar os detalhes da saída</h1>
-    <form action="/adicionar-saida" method="post">
+    <form action="javascript:salvarDados()" method="post">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" value="<%= user.nome %>" readonly>
         <label for="username">Id de Usuário:</label>
@@ -54,25 +65,29 @@
 
         <!-- Dropdown list para itinerário -->
         <label for="itinerario">Itinerário:</label>
-        <select id="itinerario" name="itinerario" required>
+        <select id="itinerario" name="itinerario" required onchange="mostrarCampoOutro(this, 'novoItinerario')">
             <% itinerarios.forEach(function(itinerario) { %>
                 <option value="<%= itinerario %>"><%= itinerario %></option>
             <% }); %>
+            <option value="Outro">Outro</option>
         </select>
+        <input type="text" id="novoItinerario" name="novoItinerario" placeholder="Digite o novo itinerário" style="display: none;">
 
         <!-- Dropdown list para serviço -->
         <label for="servico">Serviço:</label>
-        <select id="servico" name="servico" required>
+        <select id="servico" name="servico" required onchange="mostrarCampoOutro(this, 'novoServico')">
             <% servicos.forEach(function(servico) { %>
                 <option value="<%= servico %>"><%= servico %></option>
             <% }); %>
+            <option value="Outro">Outro</option>
         </select>
+        <input type="text" id="novoServico" name="novoServico" placeholder="Digite o novo serviço" style="display: none;">
 
         <label for="kmSaida">Quilometragem Inicial:</label>
-        <input type="integer" id="kmSaida" name="kmSaida" required>
+        <input type="number" id="kmSaida" name="kmSaida" required>
 
         <label for="dataSaida">Data e hora de Saída:</label>
-        <input type="datetime" id="dataSaida" name="dataSaida" required>
+        <input type="datetime-local" id="dataSaida" name="dataSaida" required>
         
         <button type="button" onclick="salvarDados()">Confirmar</button>
     </form>

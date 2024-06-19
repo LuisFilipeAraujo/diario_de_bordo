@@ -28,19 +28,19 @@
 </head>
 <body>
     <h1>Adicionar chegada</h1>
-    <form action="/adicionar-chegada" method="post">
+    <form action="javascript:salvarDados()" method="post">
         <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" readonly>
+        <input type="text" id="name" name="name" value="<%= user.nome %>"readonly>
         <label for="username">Id de Usuário:</label>
-        <input type="text" id="username" name="username" readonly>
+        <input type="text" id="username" name="username" value="<%= user.login %>"readonly>
 
         <label for="kmChegada">Quilometragem final:</label>
-        <input type="integer" id="kmChegada" name="kmChegada" required>
+        <input type="number" id="kmChegada" name="kmChegada" required>
 
         <label for="dataChegada">Data e hora de Chegada:</label>
-        <input type="datetime" id="dataChegada" name="dataChegada" required>
+        <input type="datetime-local" id="dataChegada" name="dataChegada" required>
 
-        <button type="button" onclick="salvarDados()">Confirmar</button>
+        <button type="submit">Confirmar</button>
     </form>
     <button onclick="location.href='/login'">Voltar</button>
 </body>
