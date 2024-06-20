@@ -1,4 +1,5 @@
 const Viagem = require('../models/viagem');
+const moment = require('moment-timezone'); //configurando time-zone
 const { Sequelize } = require('sequelize');
 
 exports.getUniqueValues = async (req, res) => {
@@ -45,18 +46,15 @@ exports.adicionarSaida = async (req, res) => {
       return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
     }
    
+    // Converter dataSaida para o fuso horário de São Paulo
+    const dataSaidaFormatada = moment(dataSaida).tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss');
    
-    // Validar o formato da data e hora
-    const dataSaidaValida = new Date(dataSaida);
-    if (isNaN(dataSaidaValida)) {
-        return res.status(400).json({ message: 'Data e hora de saída inválidas.' });
-    }
    // Salvar dados em cookies
    res.cookie('veiculo_ID', veiculo_ID, { path: '/' });
    res.cookie('itinerario', itinerario, { path: '/' });
    res.cookie('servico', servico, { path: '/' });
    res.cookie('kmSaida', kmSaida, { path: '/' });
-   res.cookie('dataSaida', dataSaida, { path: '/' });
+   res.cookie('dataSaida', dataSaidaFormatada, { path: '/' });
    res.cookie('usuario_ID', usuario_ID, { path: '/' });
 
    res.status(201).json({ message: 'Dados de saída armazenados com sucesso.' });
@@ -84,16 +82,23 @@ exports.adicionarChegada = async (req, res) => {
             return res.status(400).json({ message: 'Preencha todos os campos obrigatórios' });
         }
 
+        // Converter dataChegada para o fuso horário de São Paulo
+        const dataChegadaFormatada = moment(dataChegada).tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss');
+        const dataSaidaFormatada = moment(dataSaida).tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss'); // Converter dataSaida também
+        const now = moment().tz('America/Sao_Paulo').format('YYYY-MM-DD HH:mm:ss');
+        
         // Criar nova viagem com os dados combinados
         const novaViagem = await Viagem.create({
             veiculo_ID,
             usuario_ID,
             itinerario,
             servico,
-            dataSaida,
+            dataSaida: dataSaidaFormatada,
             kmSaida,
-            dataChegada,
-            kmChegada
+            dataChegada: dataChegadaFormatada,
+            kmChegada,
+            createdAt: now,
+            updatedAt: now
         });
 
         // Limpar os cookies após salvar no banco de dados
