@@ -46,8 +46,9 @@
     <form action="javascript:salvarDados()" method="post">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" value="<%= user.nome %>"readonly>
-        <label for="username">Id de Usuário:</label>
-        <input type="text" id="username" name="username" value="<%= user.usuario_ID %>"readonly>
+        <label for="username">Login:</label>
+        <input type="text" id="username" name="username" value="<%= user.login %>" readonly>
+        <input type="hidden" id="usuario_ID" name="usuario_ID" value="<%= user.usuario_ID %>">
 
         <label for="kmChegada">Quilometragem final:</label>
         <input type="number" id="kmChegada" name="kmChegada" required>

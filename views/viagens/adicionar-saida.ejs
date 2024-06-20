@@ -22,7 +22,7 @@
             const servico = document.getElementById('servico').value === 'Outro' ? document.getElementById('novoServico').value : document.getElementById('servico').value;
             const kmSaida = document.getElementById('kmSaida').value;
             const dataSaida = document.getElementById('dataSaida').value;
-            const usuario_ID = document.getElementById('username').value;
+            const usuario_ID = document.getElementById('usuario_ID').value; // Atualizado para buscar o campo oculto
 
             fetch('/viagem/adicionar-saida', {
                 method: 'POST',
@@ -64,8 +64,9 @@
     <form action="javascript:salvarDados()" method="post">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" value="<%= user.nome %>" readonly>
-        <label for="username">Id de Usuário:</label>
-        <input type="text" id="username" name="username" value="<%= user.usuario_ID %>" readonly>
+        <label for="username">Login:</label>
+        <input type="text" id="username" name="username" value="<%= user.login %>" readonly>
+        <input type="hidden" id="usuario_ID" name="usuario_ID" value="<%= user.usuario_ID %>">
         
         <!-- Dropdown list para veículos -->
         <label for="veiculo">Selecione o veículo:</label>
