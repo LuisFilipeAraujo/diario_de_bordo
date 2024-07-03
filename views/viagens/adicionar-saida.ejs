@@ -17,10 +17,10 @@
             flex-direction: column;
         }
         .header, .footer {
-            background-color: #5f5f5f; /* Fundo cinza */
-            height: 50px; /* Altura do cabeçalho e rodapé */
-            line-height: 50px; /* Alinhamento vertical do texto */
-            text-align: center; /* Centralização do texto */
+            background-color: #5f5f5f; 
+            height: 50px; 
+            line-height: 50px; 
+            text-align: center; 
         }
         .container {
             flex: 1;
@@ -85,9 +85,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <h1>Adicionar Saída</h1>
-    </header>
+    <%- include('../partials/header.ejs', { title: 'Menu de opções do Motorista' }) %>
     <div class="container">
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
@@ -142,9 +140,7 @@
         <button type="button" class="btn btn-secondary" onclick="location.href='/login'">Voltar</button>
     </div>
     <!-- Footer -->
-    <footer class="footer">
-        <p class="text-center">© 2024 Diário de Bordo. Todos os direitos reservados.</p>
-    </footer>
+    <%- include('../partials/footer.ejs') %>
 
     
 </body>
