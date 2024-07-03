@@ -34,17 +34,15 @@
         }
         .btn {
             margin-bottom: 10px;
-            width: 80%; /* Aumenta a largura dos botões */
-            padding: 20px; /* Aumenta a altura dos botões */
-            font-size: 18px; /* Aumenta o tamanho da fonte dos botões */
+            width: 80%; 
+            padding: 20px; 
+            font-size: 18px; 
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <h1>Menu do administrador</h1>
-    </header>
+    <%- include('../partials/header.ejs', { title: 'Menu de opções do administrador' }) %>
     <div class="container">
         <p>Olá, <%= user.nome %>, selecione o que deseja fazer:</p>
         <button class="btn btn-secondary" onclick="location.href='../veiculos/gerenciar-veiculos'">Gerenciar Veículos</button>
@@ -55,9 +53,7 @@
         <button class="btn btn-secondary" onclick="location.href='/login'">Voltar</button>
     </div>
     <!-- Footer -->
-    <footer class="footer">
-        <p class="text-center">© 2024 Diário de Bordo. Todos os direitos reservados.</p>
-    </footer>
+    <%- include('../partials/footer.ejs') %>
 
     
 </body>
