@@ -84,12 +84,8 @@ app.get('/motoristas/gerenciar-motoristas', (req, res) => {
     res.render('motoristas/gerenciar-motoristas');
 });
 
-// Rota para a página "historico" do Adm
-app.get('/viagens/historico', (req, res) => {
-    res.render('viagens/historico');
-});
 
-// Rota para a página adicionar-saida
+// Rota para a página adicionar-saida - mostrar credenciais na tela do form de adicionar saida
 app.get('/viagens/adicionar-saida', loginController.exibeCredenciais); // Atualizada
 
 // Rota para a página adicionar-chegada
@@ -97,18 +93,12 @@ app.get('/viagens/adicionar-chegada', (req, res) => {
     res.render('viagens/adicionar-chegada');
 });
 
-
 //Rota para fazer autenticação de usuários
 app.post('/login', loginController.login);
 
 //Rota para mostrar credenciais na tela do form de adicionar saida
-app.get('/viagens/adicionar-saida', loginController.exibeCredenciais);
+app.get('/viagens/historico', loginController.exibeViagens);
 
-/*//Rotas para a chegada
-app.get('/viagens/adicionar-chegada', (req, res) => {
-    res.render('viagens/adicionar-chegada');
-});
-app.post('/adicionar-chegada', viagemController.adicionarChegada);*/
 
 app.listen(80, ()=>{
     console.log('Working on port 80!')
