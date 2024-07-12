@@ -55,6 +55,22 @@ const dataSaida = req.cookies.dataSaida || '';
     }
 };
 
+// GET para exibir viagens
+exports.exibeViagens = async (req, res) => {
+    try {
+        const usuario = req.session.user;
+        if (!usuario) {
+            return res.redirect('/login');
+        }
+        // Buscar todas as viagens
+        const viagens = await Viagem.findAll();
+
+        res.render('viagens/historico', { viagens });
+    } catch (error) {
+        console.error('Erro ao exibir viagens:', error);
+        res.status(500).send('Erro ao exibir viagens');
+    }
+};
 //GET para encerrar sessão
 exports.logout = (req, res) => {
     req.session.destroy((err) => {
