@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const viagemController = require('../controllers/viagemController');
+const loginController = require('../controllers/loginController');
 //const { viagemController } = require('../controllers/indexController');
 
 
@@ -16,6 +17,8 @@ router.get('/adicionar-chegada', viagemController.exibirChegada);
 
 // Rota para listar todas as viagens
 router.get('/', viagemController.listarViagem);
+
+router.get('/viagens/historico', loginController.exibeViagens);
 
 //Rota para buscar uma viagem especifica por ID (PK)
 router.get('/:id', viagemController.buscarViagemPorID);
