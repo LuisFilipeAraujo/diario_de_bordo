@@ -36,8 +36,10 @@ exports.exibeCredenciais = async (req, res) => {
         if (!usuario) {
             return res.redirect('/login');
         }
-        // Buscar todos os veículos
-        const veiculos = await Veiculo.findAll();
+       // Buscar todos os veículos em ordem alfabética
+       const veiculos = await Veiculo.findAll({
+        order: [['marca', 'ASC'], ['modelo', 'ASC']]
+    });
 
 // Verificar se há dados nos cookies
 const itinerario = req.cookies.itinerario || '';
