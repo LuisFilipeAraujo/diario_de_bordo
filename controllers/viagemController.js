@@ -2,22 +2,26 @@ const Viagem = require('../models/viagem');
 const moment = require('moment-timezone'); //configurando time-zone
 const { Sequelize } = require('sequelize');
 
-exports.getUniqueValues = async (req, res) => {
+exports.getUniqueValues = async () => {
     try {
         const itinerarios = await Viagem.findAll({
             attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('itinerario')), 'itinerario']],
+            order: [[Sequelize.col('itinerario'), 'ASC']],
+            raw: true
         });
 
         const servicos = await Viagem.findAll({
             attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('servico')), 'servico']],
+            order: [[Sequelize.col('servico'), 'ASC']],
+            raw: true
         });
 
         return {
-            itinerarios: itinerarios.map(it => it.getDataValue('itinerario')),
-            servicos: servicos.map(sv => sv.getDataValue('servico')),
+            itinerarios: itinerarios.map(itinerario => itinerario.itinerario),
+            servicos: servicos.map(servico => servico.servico)
         };
     } catch (error) {
-        console.error('Erro ao buscar valores únicos:', error);
+        console.error('Erro ao buscar valores únicos de itinerários e serviços:', error);
         throw error;
     }
 };
