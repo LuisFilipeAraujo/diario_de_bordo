@@ -72,11 +72,11 @@
 
         function salvarDados() {
             const veiculo_ID = document.getElementById('veiculo').value;
-            const itinerario = document.getElementById('itinerario').value;
-            const servico = document.getElementById('servico').value;
+            const itinerario = document.getElementById('itinerario').value === 'Outro' ? document.getElementById('novoItinerario').value : document.getElementById('itinerario').value;
+            const servico = document.getElementById('servico').value === 'Outro' ? document.getElementById('novoServico').value : document.getElementById('servico').value;
             const kmSaida = document.getElementById('kmSaida').value;
             const dataSaida = document.getElementById('dataSaida').value;
-            const usuario_ID = document.getElementById('usuario_ID').value; // Atualizado para buscar o campo oculto
+            const usuario_ID = document.getElementById('usuario_ID').value;
 
             fetch('/viagem/adicionar-saida', {
                 method: 'POST',
@@ -92,19 +92,26 @@
                     usuario_ID
                 }),
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao salvar dados de saída');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log('Dados salvos com sucesso:', data);
-                // Aqui você pode redirecionar ou realizar outras ações após salvar os dados
+                if (data.success) {
+                    mostrarAlerta('Saída adicionada com sucesso!', 'success');
+                } else {
+                    mostrarAlerta('Erro ao adicionar saída.', 'danger');
+                }
             })
             .catch(error => {
                 console.error('Erro ao salvar dados de saída:', error);
+                mostrarAlerta('Erro ao salvar dados de saída.', 'danger');
             });
+        }
+
+        function mostrarAlerta(mensagem, tipo) {
+            const alertaDiv = document.getElementById('alerta');
+            alertaDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
+            setTimeout(() => {
+                alertaDiv.innerHTML = '';
+            }, 5000); 
         }
     </script>
 </head>
@@ -112,6 +119,7 @@
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Adicionar Saída' }) %>
     <div class="container">
+        <div id="alerta"></div><!-- espaço para mensagem de form enviado -->
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
                 <label for="name">Nome:</label>

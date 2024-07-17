@@ -64,9 +64,26 @@
                     usuario_ID
                 }),
             })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    mostrarAlerta('Chegada adicionada com sucesso!', 'success');
+                } else {
+                    mostrarAlerta('Erro ao adicionar Chegada.', 'danger');
+                }
+            })
             .catch(error => {
-                console.error('Erro ao salvar dados de chegada:', error);
+                console.error('Erro ao salvar dados de Chegada:', error);
+                mostrarAlerta('Erro ao salvar dados de Chegada.', 'danger');
             });
+            
+            function mostrarAlerta(mensagem, tipo) {
+                const alertaDiv = document.getElementById('alerta');
+                alertaDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
+                setTimeout(() => {
+                    alertaDiv.innerHTML = '';
+                }, 5000); 
+            }
         }
     </script>
 </head>
@@ -74,6 +91,7 @@
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Adicionar Chegada' }) %>
     <div class="container">
+        <div id="alerta"></div><!-- espaço para mensagem de form enviado -->
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
                 <label for="name">Nome:</label>
