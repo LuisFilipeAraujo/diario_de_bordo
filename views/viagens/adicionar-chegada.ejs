@@ -48,10 +48,23 @@
     </style>
 
     <script>
+        function mostrarOcorrencia() {
+            const ocorrenciaDiv = document.getElementById('ocorrencia');
+            ocorrenciaDiv.style.display = 'block';
+        }
+
         function salvarDados() {
             const kmChegada = document.getElementById('kmChegada').value;
             const dataChegada = document.getElementById('dataChegada').value;
             const usuario_ID = document.getElementById('usuario_ID').value;
+
+            const assunto = document.getElementById('assunto').value;
+            const envolvidos = document.getElementById('envolvidos').value;
+
+            const ocorrencia = {
+                assunto: assunto ? assunto : null,
+                envolvidos: envolvidos ? envolvidos : null
+            };
 
             fetch('/viagem/adicionar-chegada', {
                 method: 'POST',
@@ -61,7 +74,8 @@
                 body: JSON.stringify({
                     kmChegada,
                     dataChegada,
-                    usuario_ID
+                    usuario_ID,
+                    ocorrencia
                 }),
             })
             .then(response => response.json())
@@ -112,6 +126,22 @@
             </div>
             <button type="submit" class="btn btn-primary">Confirmar</button>
         </form>
+
+        
+        <button type="button" class="btn btn-warning" onclick="mostrarOcorrencia()">Adicionar Ocorrência</button>
+
+        <!-- Campos de Ocorrência -->
+        <div id="ocorrencia" style="display: none;">
+            <div class="form-group">
+                <label for="assunto">Assunto:</label>
+                <input type="text" id="assunto" name="assunto" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="envolvidos">Envolvidos:</label>
+                <input type="text" id="envolvidos" name="envolvidos" class="form-control">
+            </div>
+        </div>
+
         <button type="button" class="btn btn-secondary" onclick="location.href='/login'">Voltar</button>
     </div>
     <!-- Footer -->
