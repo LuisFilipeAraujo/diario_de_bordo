@@ -1,4 +1,6 @@
 const Viagem = require('../models/viagem');
+const Ocorrencia = require('../models/ocorrencia');
+const Viagem_ocorrencia = require('../models/viagem_ocorrencia');
 const moment = require('moment-timezone'); //configurando time-zone
 const { Sequelize } = require('sequelize');
 
@@ -72,7 +74,7 @@ exports.adicionarSaida = async (req, res) => {
 // POST para Adicionar detalhes da chegada e salvar a viagem no banco de dados
 exports.adicionarChegada = async (req, res) => {
     try {
-        const { kmChegada, dataChegada } = req.body;
+        const { kmChegada, dataChegada,ocorrencia } = req.body;
 
         // Recuperar dados dos cookies
         const veiculo_ID = req.cookies.veiculo_ID;
@@ -114,7 +116,21 @@ exports.adicionarChegada = async (req, res) => {
         res.clearCookie('dataSaida', { path: '/' });
         res.clearCookie('usuario_ID', { path: '/' });
 
-       
+// Se houver ocorrência, salve-a
+if (ocorrencia && ocorrencia.assunto && ocorrencia.envolvidos) {
+    const novaOcorrencia = await Ocorrencia.create({
+        assunto: ocorrencia.assunto,
+        envolvidos: ocorrencia.envolvidos,
+        dataOcorrencia: dataChegadaFormatada,
+        usuario_ID
+    });
+
+    // Criar associação na tabela viagem_ocorrencia
+    await Viagem_ocorrencia.create({
+        viagem_ID: novaViagem.viagem_ID,
+        ocorrencia_ID: novaOcorrencia.ocorrencia_ID
+    });
+}   
    // Retornar uma resposta de sucesso
    res.json({ success: true });
 } catch (error) {
