@@ -4,6 +4,10 @@ body, html {
     display: flex;
     flex-direction: column;
     background: linear-gradient(#56BC43, #43BCA9);
+    background-image: url('/assets/img/2greenDiarioBackground.png');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 .header, .footer {
     background-color: #346c02;
