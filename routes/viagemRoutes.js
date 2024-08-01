@@ -5,9 +5,6 @@ const loginController = require('../controllers/loginController');
 //const { viagemController } = require('../controllers/indexController');
 
 
-// Rota para adicionar uma nova viagem
-//router.post('/', viagemController.adicionarViagem);
-
 // Rota para adicionar os detalhes da saída (salvar em cookies)
 router.post('/adicionar-saida', viagemController.adicionarSaida);
 
@@ -16,9 +13,10 @@ router.post('/adicionar-chegada', viagemController.adicionarChegada);
 router.get('/adicionar-chegada', viagemController.exibirChegada);
 
 // Rota para listar todas as viagens
-router.get('/', viagemController.listarViagem);
+//router.get('/', viagemController.listarViagem);
 
-router.get('/viagens/historico', loginController.exibeViagens);
+//router.get('/viagens/historico', loginController.exibeViagens);
+router.get('/viagens/historico', viagemController.listarViagem);
 
 //Rota para buscar uma viagem especifica por ID (PK)
 router.get('/:id', viagemController.buscarViagemPorID);

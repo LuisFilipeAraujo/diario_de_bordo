@@ -1,8 +1,10 @@
 const Viagem = require('../models/viagem');
 const Ocorrencia = require('../models/ocorrencia');
+const Usuario = require('../models/usuarios');
+const Veiculo = require('../models/veiculo');
 const Viagem_ocorrencia = require('../models/viagem_ocorrencia');
 const moment = require('moment-timezone'); //configurando time-zone
-const { Sequelize } = require('sequelize');
+const sequelize = require('../config/database')
 
 exports.getUniqueValues = async () => {
     try {
@@ -141,13 +143,74 @@ if (ocorrencia && ocorrencia.assunto && ocorrencia.envolvidos) {
 
 //GET ALL
 exports.listarViagem = async (req, res) => {
-  try {
-      const viagem = await Viagem.findAll();
-      res.status(200).json(viagem);
-  } catch (error) {
-      console.error('Erro ao listar viagens:', error);
-      res.status(500).json({ message: 'Erro ao listar viagens' });
-  }
+    try {
+        const usuario = req.session.user;
+        if (!usuario) {
+            return res.redirect('/login');
+        }
+
+        const query = `
+            SELECT 
+                v.viagem_ID, v.usuario_ID, v.veiculo_ID, u.nome as nome, 
+                ve.modelo as modelo, ve.placa as placa, 
+                v.dataSaida, v.dataChegada, v.kmSaida, v.kmChegada, v.itinerario, v.servico,
+                o.ocorrencia_ID, o.assunto, o.envolvidos 
+            FROM 
+                viagem v
+            JOIN 
+                usuarios u ON v.usuario_ID = u.usuario_ID
+            JOIN 
+                veiculo ve ON v.veiculo_ID = ve.veiculo_ID
+            LEFT JOIN 
+                viagem_ocorrencia vo ON v.viagem_ID = vo.viagem_ID
+            LEFT JOIN 
+                ocorrencia o ON vo.ocorrencia_ID = o.ocorrencia_ID
+        `;
+
+        const viagens = await sequelize.query(query, {
+            type: sequelize.QueryTypes.SELECT
+        });
+
+        const viagensMapeadas = viagens.reduce((acc, viagem) => {
+            const index = acc.findIndex(v => v.viagem_ID === viagem.viagem_ID);
+
+            if (index > -1) {
+                if (viagem.ocorrencia_ID) {
+                    acc[index].ocorrencias.push({
+                        ocorrencia_ID: viagem.ocorrencia_ID,
+                        assunto: viagem.assunto,
+                        envolvidos: viagem.envolvidos
+                    });
+                }
+            } else {
+                acc.push({
+                    viagem_ID: viagem.viagem_ID,
+                    usuario_ID: viagem.usuario_ID,
+                    veiculo_ID: viagem.veiculo_ID,
+                    nome: viagem.nome,
+                    modelo: viagem.modelo,
+                    placa: viagem.placa,
+                    dataSaida: viagem.dataSaida,
+                    dataChegada: viagem.dataChegada,
+                    kmSaida: viagem.kmSaida,
+                    kmChegada: viagem.kmChegada,
+                    itinerario: viagem.itinerario,
+                    servico: viagem.servico,
+                    ocorrencias: viagem.ocorrencia_ID ? [{
+                        ocorrencia_ID: viagem.ocorrencia_ID,
+                        assunto: viagem.assunto,
+                        envolvidos: viagem.envolvidos
+                    }] : []
+                });
+            }
+            return acc;
+        }, []);
+
+        res.render('viagens/historico', { viagens: viagensMapeadas });
+    } catch (error) {
+        console.error('Erro ao exibir viagens:', error);
+        res.status(500).send('Erro ao exibir viagens');
+    }
 };
 
 //GET por ID
