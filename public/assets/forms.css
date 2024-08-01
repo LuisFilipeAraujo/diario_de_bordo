@@ -10,10 +10,11 @@ body, html {
     background-repeat: no-repeat;
 }
 .header, .footer {
-    background-color:linear-gradient(180deg,#56BC43, #43BCA9);
+    background: #346c02;
     height: 50px; 
     line-height: 50px; 
     text-align: center; 
+    color: aliceblue;
 }
 .container {
     flex: 1;
@@ -23,7 +24,7 @@ body, html {
     max-width: 500px;
     margin: 0 auto;
     padding-top: 20px;
-    background: white;
+    background: rgb(200, 253, 182);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -33,6 +34,7 @@ body, html {
 
 input[readonly] {
 background-color: #346c02; 
+color: white;
 }
 .btn-primary {
     display: block;
