@@ -9,14 +9,14 @@ const sequelize = require('../config/database')
 exports.getUniqueValues = async () => {
     try {
         const itinerarios = await Viagem.findAll({
-            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('itinerario')), 'itinerario']],
-            order: [[Sequelize.col('itinerario'), 'ASC']],
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('itinerario')), 'itinerario']],
+            order: [[sequelize.col('itinerario'), 'ASC']],
             raw: true
         });
 
         const servicos = await Viagem.findAll({
-            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('servico')), 'servico']],
-            order: [[Sequelize.col('servico'), 'ASC']],
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('servico')), 'servico']],
+            order: [[sequelize.col('servico'), 'ASC']],
             raw: true
         });
 
