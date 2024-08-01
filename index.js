@@ -12,6 +12,7 @@ const setorRoutes = require('./routes/setorRoutes');
 const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 
 const loginController = require('./controllers/loginController');
+const viagemController = require('./controllers/viagemController');
 const session = require('express-session');
 
 
@@ -97,7 +98,7 @@ app.get('/viagens/adicionar-chegada', (req, res) => {
 app.post('/login', loginController.login);
 
 //Rota para mostrar credenciais na tela do form de adicionar saida
-app.get('/viagens/historico', loginController.exibeViagens);
+app.get('/viagens/historico', viagemController.listarViagem);
 
 
 app.listen(80, ()=>{
