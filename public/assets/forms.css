@@ -69,4 +69,9 @@ color: white;
 button[type="submit"], button[type="button"] {
     margin-bottom: 10px;
 }
+.logo img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
 
