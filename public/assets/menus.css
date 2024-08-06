@@ -41,7 +41,7 @@ p {
 }
 
 .header h1 {
-    flex: 1 0 auto; /* Faz com que o título ocupe o espaço restante */
+    flex: 1 0 auto;/* pro título ñ ocupar o espaço restante */
     text-align: center;
     margin: 0;
 }
