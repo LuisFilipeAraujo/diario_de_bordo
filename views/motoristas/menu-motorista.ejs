@@ -16,10 +16,10 @@
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Menu de opções do Motorista' }) %>
     <div class="container">
-        <p>Olá, <%= user.nome %>, selecione o que deseja fazer:</p>
-        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-saida'">Adicionar Saída</button>
-        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-chegada'">Adicionar Chegada</button>
-        <button class="btn btn-secondary" onclick="location.href='/login'">Voltar</button>
+        <strong><p>Olá, <%= user.nome %>, selecione o que deseja fazer:</p></strong>
+        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-saida'"><strong>Adicionar Saída</strong></button>
+        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-chegada'"><strong>Adicionar Chegada</strong></button>
+        <button class="btn btn-secondary" onclick="location.href='/login'"><strong>Voltar</strong></button>
     </div>
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
