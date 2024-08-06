@@ -9,6 +9,11 @@ body, html {
     background-position: center; 
     background-repeat: no-repeat; 
 }
+p {
+    color: aliceblue;
+    font-size: large;
+}
+
 .form-label{
     color: aliceblue;
     font-size: large;
