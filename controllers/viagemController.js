@@ -165,6 +165,8 @@ exports.listarViagem = async (req, res) => {
                 viagem_ocorrencia vo ON v.viagem_ID = vo.viagem_ID
             LEFT JOIN 
                 ocorrencia o ON vo.ocorrencia_ID = o.ocorrencia_ID
+            ORDER BY 
+                v.dataSaida DESC
         `;
 
         const viagens = await sequelize.query(query, {
