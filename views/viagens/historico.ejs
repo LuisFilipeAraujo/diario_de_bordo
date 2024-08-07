@@ -33,6 +33,8 @@
                     <th>Data de Chegada</th>
                     <th>Km de Saída</th>
                     <th>Km de Chegada</th>
+                    <th>Criado em:</th>
+                    <th>Modificado em:</th>
                     <th>Ocorrência</th>
                 </tr>
             </thead>
@@ -49,6 +51,8 @@
                         <td><%= viagem.dataChegada %></td>
                         <td><%= viagem.kmSaida %></td>
                         <td><%= viagem.kmChegada %></td>
+                        <td><%= viagem.createdAt %></td>
+                        <td><%= viagem.updatedAt %></td>
                         <td>
                             <% if (viagem.ocorrencias && viagem.ocorrencias.length > 0) { %>
                                 <strong>Assunto:</strong> <%= viagem.ocorrencias[0].assunto %><br>

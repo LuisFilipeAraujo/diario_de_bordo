@@ -154,7 +154,7 @@ exports.listarViagem = async (req, res) => {
                 v.viagem_ID, v.usuario_ID, v.veiculo_ID, u.nome as nome, 
                 ve.modelo as modelo, ve.placa as placa, 
                 v.dataSaida, v.dataChegada, v.kmSaida, v.kmChegada, v.itinerario, v.servico,
-                o.ocorrencia_ID, o.assunto, o.envolvidos 
+                o.ocorrencia_ID, o.assunto, o.envolvidos, v.updatedAt, v.createdAt 
             FROM 
                 viagem v
             JOIN 
@@ -196,6 +196,8 @@ exports.listarViagem = async (req, res) => {
                     kmChegada: viagem.kmChegada,
                     itinerario: viagem.itinerario,
                     servico: viagem.servico,
+                    createdAt: viagem.createdAt,
+                    updatedAt: viagem.updatedAt,
                     ocorrencias: viagem.ocorrencia_ID ? [{
                         ocorrencia_ID: viagem.ocorrencia_ID,
                         assunto: viagem.assunto,
