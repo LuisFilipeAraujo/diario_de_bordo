@@ -8,65 +8,65 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/assets/historico.css"> 
-     <!-- FAVICON -->
-     <link href="/assets/img/logo_jacarei.png" rel="icon">
-     <!-- ICONS -->
-     <script src="https://kit.fontawesome.com/34e6a5e2fc.js" crossorigin="anonymous"></script>
-
+    <!-- FAVICON -->
+    <link href="/assets/img/logo_jacarei.png" rel="icon">
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/34e6a5e2fc.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Header -->
-    <%- include('../partials/header.ejs', { title: 'Historico de viagens/Log de viagens' }) %>
+    <%- include('../partials/header.ejs', { title: 'Historico de viagens' }) %>
 
-    <div class="container">
-        
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID da Viagem</th>
-                    <th>Nome do Usuário</th>
-                    <th>Modelo do Veículo</th>
-                    <th>Placa do Veículo</th>
-                    <th>Itinerário</th>
-                    <th>Serviço</th>
-                    <th>Data de Saída</th>
-                    <th>Data de Chegada</th>
-                    <th>Km de Saída</th>
-                    <th>Km de Chegada</th>
-                    <th>Criado em:</th>
-                    <th>Modificado em:</th>
-                    <th>Ocorrência</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% viagens.forEach(viagem => { %>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Histórico de Viagens</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
                     <tr>
-                        <td><%= viagem.viagem_ID %></td>
-                        <td><%= viagem.nome %></td>
-                        <td><%= viagem.modelo %></td>
-                        <td><%= viagem.placa %></td>
-                        <td><%= viagem.itinerario %></td>
-                        <td><%= viagem.servico %></td>
-                        <td><%= viagem.dataSaida %></td>
-                        <td><%= viagem.dataChegada %></td>
-                        <td><%= viagem.kmSaida %></td>
-                        <td><%= viagem.kmChegada %></td>
-                        <td><%= viagem.createdAt %></td>
-                        <td><%= viagem.updatedAt %></td>
-                        <td>
-                            <% if (viagem.ocorrencias && viagem.ocorrencias.length > 0) { %>
-                                <strong>Assunto:</strong> <%= viagem.ocorrencias[0].assunto %><br>
-                                <strong>Envolvidos:</strong> <%= viagem.ocorrencias[0].envolvidos %>
-                            <% } else { %>
-                                Nenhuma ocorrência
-                            <% } %>
-                        </td>
+                        <th>ID</th>
+                        <th>Usuário</th>
+                        <th>Veículo</th>
+                        <th>Placa</th>
+                        <th class="d-none d-md-table-cell">Itinerário</th>
+                        <th class="d-none d-lg-table-cell">Serviço</th>
+                        <th class="d-none d-lg-table-cell">Data Saída</th>
+                        <th class="d-none d-lg-table-cell">Data Chegada</th>
+                        <th class="d-none d-lg-table-cell">Km Saída</th>
+                        <th class="d-none d-lg-table-cell">Km Chegada</th>
+                        <th class="d-none d-xl-table-cell">Criado em</th>
+                        <th class="d-none d-xl-table-cell">Modificado em</th>
+                        <th>Ocorrência</th>
                     </tr>
-                <% }); %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% viagens.forEach(viagem => { %>
+                        <tr>
+                            <td><%= viagem.viagem_ID %></td>
+                            <td><%= viagem.nome %></td>
+                            <td><%= viagem.modelo %></td>
+                            <td><%= viagem.placa %></td>
+                            <td class="d-none d-md-table-cell"><%= viagem.itinerario %></td>
+                            <td class="d-none d-lg-table-cell"><%= viagem.servico %></td>
+                            <td class="d-none d-lg-table-cell"><%= viagem.dataSaida %></td>
+                            <td class="d-none d-lg-table-cell"><%= viagem.dataChegada %></td>
+                            <td class="d-none d-lg-table-cell"><%= viagem.kmSaida %></td>
+                            <td class="d-none d-lg-table-cell"><%= viagem.kmChegada %></td>
+                            <td class="d-none d-xl-table-cell"><%= viagem.createdAt %></td>
+                            <td class="d-none d-xl-table-cell"><%= viagem.updatedAt %></td>
+                            <td>
+                                <% if (viagem.ocorrencias && viagem.ocorrencias.length > 0) { %>
+                                    <strong>Assunto:</strong> <%= viagem.ocorrencias[0].assunto %><br>
+                                    <strong>Envolvidos:</strong> <%= viagem.ocorrencias[0].envolvidos %>
+                                <% } else { %>
+                                    Nenhuma ocorrência
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
     </div>
-   
 
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
