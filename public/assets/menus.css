@@ -7,7 +7,7 @@ body, html {
     background-image: url('/assets/img/2greenDiarioBackground.png');
     background-size: cover;
     background-position: center; 
-    background-repeat: no-repeat; 
+    
 }
 p {
     color: aliceblue;
@@ -86,4 +86,35 @@ p {
     display: flex;
     margin-bottom: 10%;
     padding: 0%;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    
+    .header {
+        height: auto; 
+        line-height: normal; 
+        padding: 10px;
+    }
+    
+    .header h1 {
+        text-align: center;
+        flex: 1 100%; 
+    }
+    
+    .header .logo, .header nav {
+        flex: 1 100%; 
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .header nav ul {
+        justify-content: center; 
+    }
+    
+    .header nav ul li {
+        margin-left: 10px;
+    }
 }
