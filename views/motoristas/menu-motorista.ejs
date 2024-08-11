@@ -14,7 +14,8 @@
      <!-- FAVICON -->
      <link href="/assets/img/logo_jacarei.png" rel="icon">
      <!-- ICONS -->
-     <script src="https://kit.fontawesome.com/34e6a5e2fc.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
 </head>
 <body>
@@ -22,9 +23,9 @@
     <%- include('../partials/header.ejs', { title: 'Menu de opções do Motorista' }) %>
     <div class="container">
         <strong><p>Olá, <%= user.nome %>, selecione o que deseja fazer:</p></strong>
-        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-saida'"><strong>Adicionar Saída</strong></button>
-        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-chegada'"><strong>Adicionar Chegada</strong></button>
-        <button class="btn btn-secondary" onclick="location.href='/login'"><strong>Voltar</strong></button>
+        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-saida'"><strong><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i>  Adicionar Saída</strong></button>
+        <button class="btn btn-secondary" onclick="location.href='../viagens/adicionar-chegada'"><strong><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i> Adicionar Chegada</strong></button>
+        <button class="btn btn-secondary" onclick="location.href='/login'"><strong><i class="fa-solid fa-rotate-left" style="color: #ffffff;"></i> Voltar</strong></button>
     </div>
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
