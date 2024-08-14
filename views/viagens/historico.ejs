@@ -16,9 +16,58 @@
 <body>
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Historico de viagens' }) %>
+    <h1 class="text-center mb-4">Histórico de Viagens</h1>
+     <!-- Formulário de Filtragem -->
+     <form class="mb-4" method="GET" action="/viagens/historico">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="usuario" class="form-label">Usuário</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome do usuário">
+            </div>
+            <div class="col-md-3">
+                <label for="veiculo" class="form-label">Veículo</label>
+                <input type="text" class="form-control" id="veiculo" name="veiculo" placeholder="Modelo ou Placa">
+            </div>
+            <div class="col-md-3">
+                <label for="data_inicio" class="form-label">Data Início</label>
+                <input type="date" class="form-control" id="data_inicio" name="data_inicio">
+            </div>
+            <div class="col-md-3">
+                <label for="data_fim" class="form-label">Data Fim</label>
+                <input type="date" class="form-control" id="data_fim" name="data_fim">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <label for="ocorrencia" class="form-label">Ocorrência</label>
+                <input type="text" class="form-control" id="ocorrencia" name="ocorrencia" placeholder="Assunto ou Envolvidos">
+            </div>
+            <div class="col-md-3">
+                <label for="itinerario" class="form-label">Itinerário</label>
+                <select class="form-select" id="itinerario" name="itinerario">
+                    <option value="">Todos</option>
+                    <% itinerarios.forEach(itinerario => { %>
+                        <option value="<%= itinerario %>"><%= itinerario %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="servico" class="form-label">Serviço</label>
+                <select class="form-select" id="servico" name="servico">
+                    <option value="">Todos</option>
+                    <% servicos.forEach(servico => { %>
+                        <option value="<%= servico %>"><%= servico %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+            </div>
+        </div>
+    </form>
 
     <div class="container my-5">
-        <h1 class="text-center mb-4">Histórico de Viagens</h1>
+        
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
