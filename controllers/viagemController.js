@@ -149,6 +149,39 @@ exports.listarViagem = async (req, res) => {
             return res.redirect('/login');
         }
 
+        // filtros do query string
+        const { usuario: filtroUsuario, veiculo, data_inicio, data_fim, ocorrencia, itinerario, servico } = req.query;
+
+        let whereClause = "WHERE 1=1";
+
+        if (filtroUsuario) {
+            whereClause += ` AND u.nome LIKE '%${filtroUsuario}%'`;
+        }
+
+        if (veiculo) {
+            whereClause += ` AND (ve.modelo LIKE '%${veiculo}%' OR ve.placa LIKE '%${veiculo}%')`;
+        }
+
+        if (data_inicio) {
+            whereClause += ` AND v.dataSaida >= '${data_inicio}'`;
+        }
+
+        if (data_fim) {
+            whereClause += ` AND v.dataChegada <= '${data_fim}'`;
+        }
+
+        if (ocorrencia) {
+            whereClause += ` AND (o.assunto LIKE '%${ocorrencia}%' OR o.envolvidos LIKE '%${ocorrencia}%')`;
+        }
+
+        if (itinerario) {
+            whereClause += ` AND v.itinerario = '${itinerario}'`;
+        }
+
+        if (servico) {
+            whereClause += ` AND v.servico = '${servico}'`;
+        }
+
         const query = `
             SELECT 
                 v.viagem_ID, v.usuario_ID, v.veiculo_ID, u.nome as nome, 
@@ -165,6 +198,7 @@ exports.listarViagem = async (req, res) => {
                 viagem_ocorrencia vo ON v.viagem_ID = vo.viagem_ID
             LEFT JOIN 
                 ocorrencia o ON vo.ocorrencia_ID = o.ocorrencia_ID
+            ${whereClause}
             ORDER BY 
                 v.dataSaida DESC
         `;
@@ -210,12 +244,16 @@ exports.listarViagem = async (req, res) => {
             return acc;
         }, []);
 
-        res.render('viagens/historico', { viagens: viagensMapeadas });
+        
+        const { itinerarios, servicos } = await this.getUniqueValues();
+
+        res.render('viagens/historico', { viagens: viagensMapeadas, itinerarios, servicos });
     } catch (error) {
         console.error('Erro ao exibir viagens:', error);
         res.status(500).send('Erro ao exibir viagens');
     }
 };
+
 
 //GET por ID
 exports.buscarViagemPorID = async (req, res) => {
@@ -251,4 +289,17 @@ exports.editarViagem = async (req, res) => {
       console.error('Erro ao atualizar viagem:', error);
       res.status(500).json({ message: 'Erro ao atualizar viagem' });
   }
+};
+
+exports.historicoIndex = async (req,res) =>{
+    try {
+        const usuario = req.session.user;
+        if (!usuario) {
+            return res.redirect('/login');
+        }
+    return res.render('viagens/historicoIndex', { user: usuario });
+} catch (error) {
+    console.error('Erro ao exibir viagens:', error);
+    res.status(500).send('Erro ao exibir viagens');
+}
 };
