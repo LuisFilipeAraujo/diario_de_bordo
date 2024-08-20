@@ -77,41 +77,41 @@
         <div id="alerta"></div><!-- espaço para mensagem de form enviado -->
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
-                <label for="name">Nome:</label>
+                <label for="name"><strong>Nome:</strong></label>
                 <input type="text" id="name" name="name" class="form-control" value="<%= user.nome %>" readonly>
             </div>
             <div class="form-group">
-                <label for="username">Login:</label>
+                <label for="username"><strong>Login:</strong></label>
                 <input type="text" id="username" name="username" class="form-control" value="<%= user.login %>" readonly>
                 <input type="hidden" id="usuario_ID" name="usuario_ID" value="<%= user.usuario_ID %>">
             </div>
             <div class="form-group">
-                <label for="kmChegada">Quilometragem final:</label>
+                <label for="kmChegada"><strong>Quilometragem final:</strong></label>
                 <input type="integer" id="kmChegada" name="kmChegada" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="dataChegada">Data e hora de Chegada:</label>
+                <label for="dataChegada"><strong>Data e hora de Chegada:</strong></label>
                 <input type="datetime-local" id="dataChegada" name="dataChegada" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Confirmar</button>
+            <button type="submit" class="btn btn-primary"><strong>Confirmar</strong></button>
         </form>
 
         
-        <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()">Adicionar Ocorrência</button>
+        <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()"><strong>Adicionar Ocorrência</strong></button>
 
         <!-- Campos de Ocorrência -->
         <div id="ocorrencia" style="display: none;">
             <div class="form-group">
-                <label for="assunto">Assunto:</label>
+                <label for="assunto"><strong>Assunto:</strong></label>
                 <input type="text" id="assunto" name="assunto" class="form-control">
             </div>
             <div class="form-group">
-                <label for="envolvidos">Envolvidos:</label>
+                <label for="envolvidos"><strong>Envolvidos:</strong></label>
                 <input type="text" id="envolvidos" name="envolvidos" class="form-control">
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" onclick="location.href='/login'">Voltar</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/login'"><strong>Voltar</strong></button>
     </div>
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>

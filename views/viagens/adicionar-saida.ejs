@@ -92,16 +92,16 @@
         <div id="alerta"></div><!-- espaço para mensagem de form enviado -->
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
-                <label for="name">Nome:</label>
+                <label for="name"><strong>Nome:</strong></label>
                 <input type="text" id="name" name="name" class="form-control" value="<%= user.nome %>" readonly>
             </div>
             <div class="form-group">
-                <label for="username">Login:</label>
+                <label for="username"><strong>Login:</strong></label>
                 <input type="text" id="username" name="username" class="form-control" value="<%= user.login %>" readonly>
                 <input type="hidden" id="usuario_ID" name="usuario_ID" value="<%= user.usuario_ID %>">
             </div>
             <div class="form-group">
-                <label for="veiculo">Selecione o veículo:</label>
+                <label for="veiculo"><strong>Selecione o veículo:</strong></label>
                 <select name="veiculo_ID" id="veiculo" class="form-control">
                     <% veiculos.forEach(function(veiculo) { %>
                         <option value="<%= veiculo.veiculo_ID %>">
@@ -111,24 +111,24 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="itinerario">Itinerário:</label>
+                <label for="itinerario"><strong>Itinerário:</strong></label>
                 <input type="text" id="itinerario" name="itinerario" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="servico">Serviço:</label>
+                <label for="servico"><strong>Serviço:</strong></label>
                 <input type="text" id="servico" name="servico" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="kmSaida">Quilometragem Inicial:</label>
+                <label for="kmSaida"><strong>Quilometragem Inicial:</strong></label>
                 <input type="integer" id="kmSaida" name="kmSaida" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="dataSaida">Data e hora de Saída:</label>
+                <label for="dataSaida"><strong>Data e hora de Saída:</strong></label>
                 <input type="datetime-local" id="dataSaida" name="dataSaida" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Confirmar</button>
+            <button type="submit" class="btn btn-primary"><strong>Confirmar</strong></button>
         </form>
-        <button type="button" class="btn btn-primary" onclick="location.href='/login'">Voltar</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/login'"><strong>Voltar</strong></button>
     </div>
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
