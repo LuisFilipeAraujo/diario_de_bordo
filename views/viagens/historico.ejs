@@ -18,6 +18,7 @@
     <%- include('../partials/header.ejs', { title: 'Historico de viagens' }) %>
     <h1 class="text-center mb-4">Histórico de Viagens</h1>
      <!-- Formulário de Filtragem -->
+     <div class="form-container"> 
      <form class="mb-4" method="GET" action="/viagens/historico">
         <div class="row">
             <div class="col-md-3">
@@ -61,10 +62,12 @@
                 </select>
             </div>
             <div class="col-md-3 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> Filtrar</button>
+                <button type="submit" class="btn btn-primary w-50"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> Filtrar</button>
+                <a href="/viagens/historico" class="btn btn-primary w-50 ms-2">Limpar</a>
             </div>
         </div>
     </form>
+    </div>
 
     <div class="container my-5">
         

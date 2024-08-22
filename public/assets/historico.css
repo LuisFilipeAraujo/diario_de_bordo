@@ -123,6 +123,10 @@ p, .form-label, .text-center {
     text-align: center;
 }
 
+.form-container {
+    padding: 20px;
+}
+
 @media (max-width: 768px) {
     .table-responsive {
         overflow-x: auto;
