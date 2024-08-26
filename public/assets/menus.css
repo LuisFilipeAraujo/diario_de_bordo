@@ -74,6 +74,13 @@ p {
     background-color: #346c02;
     color:aliceblue 
 }
+.btn:hover {
+    background-color: #274f03; 
+}
+.btn:focus, .btn:active {
+    background-color: #274f03;
+    color: aliceblue; 
+}
 
 .logo img {
     width: 100px;

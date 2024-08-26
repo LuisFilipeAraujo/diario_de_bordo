@@ -80,8 +80,18 @@ p, .form-label, .text-center {
     width: 80%;
     padding: 20px;
     font-size: 18px;
-    background-color: #346c02;
+    background-color: #346c02; 
     color: aliceblue;
+    border: none;
+    transition: background-color 0.3s; 
+}
+
+.btn:hover {
+    background-color: #274f03; 
+}
+.btn:focus, .btn:active {
+    background-color: #274f03;
+    color: aliceblue; 
 }
 
 .logo img {
