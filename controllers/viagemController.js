@@ -19,13 +19,45 @@ exports.getUniqueValues = async () => {
             order: [[sequelize.col('servico'), 'ASC']],
             raw: true
         });
+        const modelos = await Veiculo.findAll({
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('modelo')), 'modelo']],
+            order: [[sequelize.col('modelo'), 'ASC']],
+            raw: true
+        });
+        const placas = await Veiculo.findAll({
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('placa')), 'placa']],
+            order: [[sequelize.col('placa'), 'ASC']],
+            raw: true
+        });
+        const nomes = await Usuario.findAll({
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('nome')), 'nome']],
+            order: [[sequelize.col('nome'), 'ASC']],
+            raw: true
+        });
+        const assuntos = await Ocorrencia.findAll({
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('assunto')), 'assunto']],
+            order: [[sequelize.col('assunto'), 'ASC']],
+            raw: true
+        });
+        const envolvidos = await Ocorrencia.findAll({
+            attributes: [[sequelize.fn('DISTINCT', sequelize.col('envolvidos')), 'envolvidos']],
+            order: [[sequelize.col('envolvidos'), 'ASC']],
+            raw: true
+        });
+        
+        
 
         return {
             itinerarios: itinerarios.map(itinerario => itinerario.itinerario),
-            servicos: servicos.map(servico => servico.servico)
+            servicos: servicos.map(servico => servico.servico),
+            modelos: modelos.map(modelo => modelo.modelo),
+            placas: placas.map(placa => placa.placa),
+            nomes: nomes.map(nome => nome.nome),
+            assuntos: assuntos.map(assunto => assunto.assunto),
+            envolvidos: envolvidos.map(envolvido => envolvido.envolvidos)
         };
     } catch (error) {
-        console.error('Erro ao buscar valores únicos de itinerários e serviços:', error);
+        console.error('Erro ao buscar valores únicos :', error);
         throw error;
     }
 };
@@ -245,9 +277,9 @@ exports.listarViagem = async (req, res) => {
         }, []);
 
         
-        const { itinerarios, servicos } = await this.getUniqueValues();
+        const { itinerarios, servicos,modelos, placas, nomes, assuntos, envolvidos  } = await this.getUniqueValues();
 
-        res.render('viagens/historico', { viagens: viagensMapeadas, itinerarios, servicos });
+        res.render('viagens/historico', { viagens: viagensMapeadas, itinerarios, servicos,modelos, placas, nomes, assuntos, envolvidos  });
     } catch (error) {
         console.error('Erro ao exibir viagens:', error);
         res.status(500).send('Erro ao exibir viagens');
