@@ -116,7 +116,7 @@
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>ID</th>
+                        
                         <th>Usuário</th>
                         <th>Veículo</th>
                         <th>Placa</th>
@@ -134,7 +134,7 @@
                 <tbody>
                     <% viagens.forEach(viagem => { %>
                         <tr>
-                            <td><%= viagem.viagem_ID %></td>
+                            
                             <td><%= viagem.nome %></td>
                             <td><%= viagem.modelo %></td>
                             <td><%= viagem.placa %></td>
@@ -165,7 +165,7 @@
             <% viagens.forEach(viagem => { %>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Viagem <%= viagem.viagem_ID %></h5>
+                        
                         <p class="card-text"><strong>Usuário:</strong> <%= viagem.nome %></p>
                         <p class="card-text"><strong>Veículo:</strong> <%= viagem.modelo %> - <%= viagem.placa %></p>
                         <p class="card-text"><strong>Itinerário:</strong> <%= viagem.itinerario %></p>
