@@ -12,6 +12,24 @@ p, .form-label, .text-center {
     color: aliceblue;
     font-size: large;
 }
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 5px;
+    color: #333;
+}
 
 .header {
     background-color: #346c02;
@@ -131,6 +149,36 @@ p, .form-label, .text-center {
 .table td, .table th {
     vertical-align: middle;
     text-align: center;
+}
+
+.form-container {
+    padding: 20px;
+}
+/* Exibe a tabela em telas maiores que 1400px */
+@media (min-width: 1400px) {
+    .card {
+        display: none; /* Ocultar cards */
+    }
+    
+    .table-responsive {
+        display: block; /* Exibir tabela */
+    }
+}
+
+/* Exibe os cards e esconde a tabela em telas menores que 1400px */
+@media (max-width: 1400px) {
+    .table-responsive {
+        display: none; /* Ocultar tabela */
+    }
+    
+    .card {
+        display: block; /* Exibir cards */
+    }
+}
+
+/* Garantir que todas as colunas estejam visíveis na tabela */
+.table thead th, .table tbody td {
+    display: table-cell;
 }
 
 .form-container {
