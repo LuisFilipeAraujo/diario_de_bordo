@@ -181,7 +181,7 @@ exports.listarViagem = async (req, res) => {
             return res.redirect('/login');
         }
 
-        // filtros do query string
+        // Filtros do query string
         const { usuario: filtroUsuario, veiculo, data_inicio, data_fim, ocorrencia, itinerario, servico } = req.query;
 
         let whereClause = "WHERE 1=1";
@@ -239,47 +239,29 @@ exports.listarViagem = async (req, res) => {
             type: sequelize.QueryTypes.SELECT
         });
 
-        const viagensMapeadas = viagens.reduce((acc, viagem) => {
-            const index = acc.findIndex(v => v.viagem_ID === viagem.viagem_ID);
+        // Alteração para formatação das datas usando moment
+        const viagensMapeadas = viagens.map(viagem => {
+            return {
+                ...viagem,
+                dataSaida: moment(viagem.dataSaida).format('DD/MM/YYYY HH:mm'),  // Formatação de data e hora com localidade pt-br
+                dataChegada: moment(viagem.dataChegada).format('DD/MM/YYYY HH:mm'),  // Formatação de data e hora com localidade pt-br
+                createdAt: moment(viagem.createdAt).format('DD/MM/YYYY HH:mm'),
+                updatedAt: moment(viagem.updatedAt).format('DD/MM/YYYY HH:mm')
+            };
+        });
 
-            if (index > -1) {
-                if (viagem.ocorrencia_ID) {
-                    acc[index].ocorrencias.push({
-                        ocorrencia_ID: viagem.ocorrencia_ID,
-                        assunto: viagem.assunto,
-                        envolvidos: viagem.envolvidos
-                    });
-                }
-            } else {
-                acc.push({
-                    viagem_ID: viagem.viagem_ID,
-                    usuario_ID: viagem.usuario_ID,
-                    veiculo_ID: viagem.veiculo_ID,
-                    nome: viagem.nome,
-                    modelo: viagem.modelo,
-                    placa: viagem.placa,
-                    dataSaida: viagem.dataSaida,
-                    dataChegada: viagem.dataChegada,
-                    kmSaida: viagem.kmSaida,
-                    kmChegada: viagem.kmChegada,
-                    itinerario: viagem.itinerario,
-                    servico: viagem.servico,
-                    createdAt: viagem.createdAt,
-                    updatedAt: viagem.updatedAt,
-                    ocorrencias: viagem.ocorrencia_ID ? [{
-                        ocorrencia_ID: viagem.ocorrencia_ID,
-                        assunto: viagem.assunto,
-                        envolvidos: viagem.envolvidos
-                    }] : []
-                });
-            }
-            return acc;
-        }, []);
+        const { itinerarios, servicos, modelos, placas, nomes, assuntos, envolvidos } = await this.getUniqueValues();
 
-        
-        const { itinerarios, servicos,modelos, placas, nomes, assuntos, envolvidos  } = await this.getUniqueValues();
-
-        res.render('viagens/historico', { viagens: viagensMapeadas, itinerarios, servicos,modelos, placas, nomes, assuntos, envolvidos  });
+        res.render('viagens/historico', { 
+            viagens: viagensMapeadas, 
+            itinerarios, 
+            servicos, 
+            modelos, 
+            placas, 
+            nomes, 
+            assuntos, 
+            envolvidos 
+        });
     } catch (error) {
         console.error('Erro ao exibir viagens:', error);
         res.status(500).send('Erro ao exibir viagens');
