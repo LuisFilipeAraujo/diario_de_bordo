@@ -147,11 +147,11 @@
                             <td class="d-none d-xl-table-cell"><%= viagem.createdAt %></td>
                             <td class="d-none d-xl-table-cell"><%= viagem.updatedAt %></td>
                             <td>
-                                <% if (viagem.ocorrencias && viagem.ocorrencias.length > 0) { %>
-                                    <strong>Assunto:</strong> <%= viagem.ocorrencias[0].assunto %><br>
-                                    <strong>Envolvidos:</strong> <%= viagem.ocorrencias[0].envolvidos %>
+                                <% if (viagem.assunto && viagem.envolvidos) { %>
+                                    <strong>Assunto:</strong> <%= viagem.assunto %><br>
+                                    <strong>Envolvidos:</strong> <%= viagem.envolvidos %>
                                 <% } else { %>
-                                    Nenhuma ocorrência
+                                    Nenhuma ocorrência encontrada
                                 <% } %>
                             </td>
                         </tr>
@@ -176,8 +176,8 @@
                         <p class="card-text"><strong>Km Chegada:</strong> <%= viagem.kmChegada %></p>
                         <p class="card-text"><strong>Criado em:</strong> <%= viagem.createdAt %></p>
                         <p class="card-text"><strong>Modificado em:</strong> <%= viagem.updatedAt %></p>
-                        <% if (viagem.ocorrencias && viagem.ocorrencias.length > 0) { %>
-                            <p class="card-text"><strong>Ocorrência:</strong> <%= viagem.ocorrencias[0].assunto %> - <%= viagem.ocorrencias[0].envolvidos %></p>
+                        <% if (viagem.assunto && viagem.envolvidos) { %>
+                            <p class="card-text"><strong>Ocorrência:</strong> <%= viagem.assunto %> - <%= viagem.envolvidos %></p>
                         <% } else { %>
                             <p class="card-text">Nenhuma ocorrência</p>
                         <% } %>
