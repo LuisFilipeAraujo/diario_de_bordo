@@ -18,6 +18,9 @@
     <link href="/assets/img/logo_jacarei.png" rel="icon">
     <!-- ICONS -->
     <script src="https://kit.fontawesome.com/34e6a5e2fc.js" crossorigin="anonymous"></script>
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/assets/historico.css"> 
     <script>
         $(document).ready(function() {
@@ -60,12 +63,34 @@
             });  
            
         });
+
+        document.getElementById("download-pdf").addEventListener("click", function() {
+            // Seleciona o conteúdo que será convertido em PDF
+            var element = document.querySelector(".container"); // Ou a classe que contém a tabela/cards
+    
+            // Configuração do PDF
+            var opt = {
+                margin:       0.5,
+                filename:     'historico_viagens.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+    
+            // Gera o PDF e inicia o download
+            html2pdf().set(opt).from(element).save();
+        });
     </script>
 </head>
 <body>
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Historico de viagens' }) %>
-    <h1 class="text-center mb-4">Histórico de Viagens</h1>
+     <!-- Botão para baixar PDF -->
+     <div class="d-flex justify-content-end mb-3">
+        <button id="download-pdf" class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> Baixar PDF
+        </button>
+    </div>
      <!-- Formulário de Filtragem -->
      <div class="form-container"> 
      <form class="mb-4" method="GET" action="/viagens/historico">
@@ -186,7 +211,35 @@
             <% }); %>
         </div>
     </div>
-    
+      <!-- Script para baixar PDF -->
+      <script>
+        document.getElementById("download-pdf").addEventListener("click", function() {
+            var element = document.querySelector(".container");
+            
+            // Ajustando o estilo da tabela para a impressão
+            element.style.fontSize = "10px";
+            element.style.width = "100%";
+            
+        
+            var opt = {
+                margin:       [0.1, 0.1],
+                filename:     'historico_viagens.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 1.5, useCORS: true }, 
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'landscape' } 
+            };
+            
+            // Gera o PDF e inicia o download
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Após salvar o PDF, reverta as alterações no estilo
+                element.style.fontSize = "";
+                element.style.width = "";
+                Array.from(element.querySelectorAll('th, td')).forEach(cell => {
+                    cell.style.padding = "";
+                });
+            });
+        });
+    </script>
 
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
