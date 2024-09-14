@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/34e6a5e2fc.js" crossorigin="anonymous"></script>
     <!-- HTML2PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-     <!-- SheetJS -->
+    <!-- SheetJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/assets/historico.css"> 
@@ -71,7 +71,7 @@
     <!-- Header -->
     <%- include('../partials/header.ejs', { title: 'Historico de viagens' }) %>
     <!-- Botão para baixar PDF -->
-     <div class="d-flex justify-content-end mb-3">
+     <div class="button-container">
         <button id="download-pdf" class="btn btn-primary">
             <i class="fa-solid fa-download"></i> Baixar PDF
         </button>
@@ -117,9 +117,9 @@
                   
             </div>
             <div class="col-md-3 d-flex align-items-end">
+                <a href="/viagens/historico" class="btn btn-primary w-50 me-2">Limpar</a>
                 <button type="submit" class="btn btn-primary w-50"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> Filtrar</button>
-                <a href="/viagens/historico" class="btn btn-primary w-50 ms-2">Limpar</a>
-            </div>
+            </div>    
         </div>
     </form>
     </div>
