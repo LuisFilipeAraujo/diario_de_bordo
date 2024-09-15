@@ -185,33 +185,45 @@ exports.listarViagem = async (req, res) => {
         const { usuario: filtroUsuario, veiculo, data_inicio, data_fim, ocorrencia, itinerario, servico } = req.query;
 
         let whereClause = "WHERE 1=1";
+        let filtrosExibidos = [];
 
         if (filtroUsuario) {
             whereClause += ` AND u.nome LIKE '%${filtroUsuario}%'`;
+            filtrosExibidos.push(`Usuário: ${filtroUsuario}`);
         }
 
         if (veiculo) {
             whereClause += ` AND (ve.modelo LIKE '%${veiculo}%' OR ve.placa LIKE '%${veiculo}%')`;
+            filtrosExibidos.push(`Veículo: ${veiculo}`);
         }
 
         if (data_inicio) {
             whereClause += ` AND v.dataSaida >= '${data_inicio}'`;
+            filtrosExibidos.push(`Data Início: ${moment(data_inicio).format('DD/MM/YYYY')}`);
         }
 
         if (data_fim) {
             whereClause += ` AND v.dataChegada <= '${data_fim}'`;
+            filtrosExibidos.push(`Data Fim: ${moment(data_fim).format('DD/MM/YYYY')}`);
         }
 
         if (ocorrencia) {
             whereClause += ` AND (o.assunto LIKE '%${ocorrencia}%' OR o.envolvidos LIKE '%${ocorrencia}%')`;
+            filtrosExibidos.push(`Ocorrência: ${ocorrencia}`);
         }
 
         if (itinerario) {
             whereClause += ` AND v.itinerario = '${itinerario}'`;
+            filtrosExibidos.push(`Itinerário: ${itinerario}`);
         }
 
         if (servico) {
             whereClause += ` AND v.servico = '${servico}'`;
+            filtrosExibidos.push(`Serviço: ${servico}`);
+        }
+        // Se não houver filtros, exibir "tudo"
+        if (filtrosExibidos.length === 0) {
+            filtrosExibidos.push('tudo');
         }
 
         const query = `
@@ -252,6 +264,9 @@ exports.listarViagem = async (req, res) => {
 
         const { itinerarios, servicos, modelos, placas, nomes, assuntos, envolvidos } = await this.getUniqueValues();
 
+        // Obter data atual formatada
+        const dataAtual = moment().format('DD/MM/YYYY HH:mm');
+
         res.render('viagens/historico', { 
             viagens: viagensMapeadas, 
             itinerarios, 
@@ -260,7 +275,9 @@ exports.listarViagem = async (req, res) => {
             placas, 
             nomes, 
             assuntos, 
-            envolvidos 
+            envolvidos,
+            dataAtual, 
+            filtrosExibidos: filtrosExibidos.join(', ') 
         });
     } catch (error) {
         console.error('Erro ao exibir viagens:', error);
