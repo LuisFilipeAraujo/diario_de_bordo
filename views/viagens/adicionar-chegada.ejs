@@ -93,11 +93,7 @@
                 <label for="dataChegada"><strong>Data e hora de Chegada:</strong></label>
                 <input type="datetime-local" id="dataChegada" name="dataChegada" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary"><strong>Confirmar</strong></button>
-        </form>
-
-        
-        <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()"><strong>Adicionar Ocorrência</strong></button>
+            <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()"><strong>Adicionar Ocorrência (se houver)</strong></button>
 
         <!-- Campos de Ocorrência -->
         <div id="ocorrencia" style="display: none;">
@@ -110,6 +106,12 @@
                 <input type="text" id="envolvidos" name="envolvidos" class="form-control">
             </div>
         </div>
+
+            <button type="submit" class="btn btn-primary"><strong>Confirmar Chegada</strong></button>
+        </form>
+
+        
+        
 
         <button type="button" class="btn btn-primary" onclick="history.back()"><strong>Voltar</strong></button>
     </div>
