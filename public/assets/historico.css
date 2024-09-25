@@ -165,6 +165,26 @@ p, .form-label, .text-center {
 .form-container {
     padding: 20px;
 }
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto; 
+    z-index: 1000;
+}
+
+.ui-menu-item {
+    padding: 8px; 
+}
+
+.ui-menu-item:hover {
+    background-color: #e9ecef;
+}
+
+.ui-state-active {
+    background-color: #007bff; 
+    color: #ffffff; 
+}
+
 /* Exibe a tabela em telas maiores que 1400px */
 @media (min-width: 1400px) {
     .card {
