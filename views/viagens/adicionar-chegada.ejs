@@ -86,34 +86,34 @@
                 <input type="hidden" id="usuario_ID" name="usuario_ID" value="<%= user.usuario_ID %>">
             </div>
             <div class="form-group">
-                <label for="kmChegada"><strong>Quilometragem final:</strong></label>
-                <input type="integer" id="kmChegada" name="kmChegada" class="form-control" required>
+                <label for="kmChegada"><strong>Quilometragem final (Km):</strong></label>
+                <input type="integer" id="kmChegada" name="kmChegada" placeholder="ex: 1000" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="dataChegada"><strong>Data e hora de Chegada:</strong></label>
                 <input type="datetime-local" id="dataChegada" name="dataChegada" class="form-control" required>
             </div>
-            <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()"><strong>Adicionar Ocorrência (se houver)</strong></button>
+            <button type="button" class="btn btn-primary" onclick="mostrarOcorrencia()"><strong><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i> Adicionar Ocorrência (se houver)</strong></button>
 
         <!-- Campos de Ocorrência -->
         <div id="ocorrencia" style="display: none;">
             <div class="form-group">
                 <label for="assunto"><strong>Assunto:</strong></label>
-                <input type="text" id="assunto" name="assunto" class="form-control">
+                <input type="text" id="assunto" name="assunto" placeholder="ex: ultrapassagem de sinal vermelho..." class="form-control">
             </div>
             <div class="form-group">
                 <label for="envolvidos"><strong>Envolvidos:</strong></label>
-                <input type="text" id="envolvidos" name="envolvidos" class="form-control">
+                <input type="text" id="envolvidos" name="envolvidos" placeholder="ex: motorista e passageiro" class="form-control">
             </div>
         </div>
 
-            <button type="submit" class="btn btn-primary"><strong>Confirmar Chegada</strong></button>
+            <button type="submit" class="btn btn-primary"><strong><i class="fa-solid fa-check" style="color: #ffffff;"></i> Confirmar Chegada</strong></button>
         </form>
 
         
         
 
-        <button type="button" class="btn btn-primary" onclick="history.back()"><strong>Voltar</strong></button>
+        <button type="button" class="btn btn-primary" onclick="history.back()"><strong><i class="fa-solid fa-rotate-left" style="color: #ffffff;"></i> Voltar</strong></button>
     </div>
     <!-- Footer -->
     <%- include('../partials/footer.ejs') %>
