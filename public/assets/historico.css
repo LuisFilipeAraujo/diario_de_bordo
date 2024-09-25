@@ -141,12 +141,14 @@ p, .form-label, .text-center {
 }
 
 .table {
-    margin-bottom: 0;
+    border-collapse: separate; 
+    border-radius: 10px; 
+    overflow: hidden; 
 }
 
 .table thead {
-    background-color: #346c02;
-    color: aliceblue;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px; 
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -160,6 +162,13 @@ p, .form-label, .text-center {
 .table td, .table th {
     vertical-align: middle;
     text-align: center;
+}
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; 
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
 }
 
 .form-container {
@@ -183,6 +192,12 @@ p, .form-label, .text-center {
 .ui-state-active {
     background-color: #007bff; 
     color: #ffffff; 
+}
+
+.alert-info {
+    background-color: #346c02;
+    color: aliceblue; 
+    border-color: #346c02;
 }
 
 /* Exibe a tabela em telas maiores que 1400px */
