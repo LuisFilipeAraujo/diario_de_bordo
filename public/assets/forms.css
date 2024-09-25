@@ -71,11 +71,13 @@ color: white;
 input[readonly]:hover {
     background-color: #346c02; 
     cursor: not-allowed;
+    color: white;
     }
 
 input[readonly]:focus {
     background-color: #346c02; 
     cursor: not-allowed;
+    color: white;
     }
 .btn-primary {
     display: block;
