@@ -57,10 +57,26 @@ body, html {
     margin-bottom: 20px;
 }
 
+#veiculo {
+    appearance: none; 
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black"><path d="M4.2 6.3L8 10.1l3.8-3.8 1.4 1.4-5.2 5.2-5.2-5.2z"/></svg>') no-repeat right 10px center;
+    background-size: 12px; 
+    background-color: white;
+    color: gray;
+}
 input[readonly] {
 background-color: #346c02; 
 color: white;
 }
+input[readonly]:hover {
+    background-color: #346c02; 
+    cursor: not-allowed;
+    }
+
+input[readonly]:focus {
+    background-color: #346c02; 
+    cursor: not-allowed;
+    }
 .btn-primary {
     display: block;
     width: 100%;
