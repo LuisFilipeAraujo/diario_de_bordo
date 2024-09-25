@@ -72,6 +72,10 @@
     <%- include('../partials/header.ejs', { title: 'REGISTROS' }) %>
     <!-- Botão para baixar PDF -->
      <div class="button-container">
+        <!-- Botão para voltar - levará a um filtro anterior se mais que um tiver sido usado -->
+        <button id="voltar" class="btn btn-primary" onclick="history.back()">
+            <strong><i class="fa-solid fa-rotate-left" style="color: #ffffff;"></i> Voltar</strong>
+        </button>
         <button id="download-pdf" class="btn btn-primary">
             <i class="fa-solid fa-download"></i> Baixar PDF
         </button>
@@ -117,7 +121,7 @@
                   
             </div>
             <div class="col-md-3 d-flex align-items-end">
-                <a href="/viagens/historico" class="btn btn-primary w-50 me-2">Limpar</a>
+                <a href="/viagens/historico" class="btn btn-primary w-50 me-2"><i class="fa-sharp fa-solid fa-filter-circle-xmark"></i> Limpar</a>
                 <button type="submit" class="btn btn-primary w-50"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> Filtrar</button>
             </div>    
         </div>
