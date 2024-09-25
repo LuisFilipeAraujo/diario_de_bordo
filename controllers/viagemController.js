@@ -187,6 +187,11 @@ exports.listarViagem = async (req, res) => {
         let whereClause = "WHERE 1=1";
         let filtrosExibidos = [];
 
+        // Se o usuário for um motorista, filtrar apenas suas viagens
+        if (usuario.tipo_Usuario === 'motorista') {
+            whereClause += ` AND v.usuario_ID = ${usuario.usuario_ID}`;
+        }
+
         if (filtroUsuario) {
             whereClause += ` AND u.nome LIKE '%${filtroUsuario}%'`;
             filtrosExibidos.push(`Usuário: ${filtroUsuario}`);
