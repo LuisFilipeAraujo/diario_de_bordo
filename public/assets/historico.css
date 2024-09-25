@@ -105,6 +105,7 @@ p, .form-label, .text-center {
 }
 .btn {
     margin-bottom: 10px;
+    margin-top: 10px;
     width: 80%;
     padding: 20px;
     font-size: 18px;
