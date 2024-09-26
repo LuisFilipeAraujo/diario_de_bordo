@@ -89,7 +89,7 @@
      <form class="mb-4" method="GET" action="/viagens/historico">
         <div class="row">
             <div class="col-md-3">
-                <label for="usuario" class="form-label">Usuário:</label>
+                <label for="usuario" class="form-label"><strong>Usuário:</strong></label>
                 <input type="text" id="usuario" class="form-control" name="usuario" 
                        value="<%= usuario.tipo_Usuario === 'motorista' ? usuario.nome : '' %>" 
                        placeholder="<%= usuario.tipo_Usuario === 'motorista' ? usuario.nome : 'Digite o nome do usuário' %>" 
@@ -99,30 +99,30 @@
                        class="form-control" />
             </div>
             <div class="col-md-3">
-                <label for="veiculo" class="form-label">Veículo</label>
+                <label for="veiculo" class="form-label"><strong>Veículo</strong></label>
                 <input type="text" class="form-control" id="veiculo" name="veiculo" placeholder="Modelo ou Placa">
             </div>
             <div class="col-md-3">
-                <label for="data_inicio" class="form-label">Data Inicial</label>
+                <label for="data_inicio" class="form-label"><strong>Data Inicial</strong></label>
                 <input type="date" class="form-control" id="data_inicio" name="data_inicio">
             </div>
             <div class="col-md-3">
-                <label for="data_fim" class="form-label">Data Final</label>
+                <label for="data_fim" class="form-label"><strong>Data Final</strong></label>
                 <input type="date" class="form-control" id="data_fim" name="data_fim">
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-md-3">
-                <label for="ocorrencia" class="form-label">Ocorrência</label>
+                <label for="ocorrencia" class="form-label"><strong>Ocorrência</strong></label>
                 <input type="text" class="form-control" id="ocorrencia" name="ocorrencia" placeholder="Assunto ou Envolvidos">
             </div>
             <div class="col-md-3">
-                <label for="itinerario" class="form-label">Itinerário</label>
+                <label for="itinerario" class="form-label"><strong>Itinerário</strong></label>
                 <input type="text" class="form-control" id="itinerario" name="itinerario"  placeholder="Destinos/rotas">
                    
             </div>
             <div class="col-md-3">
-                <label for="servico" class="form-label">Serviço</label>
+                <label for="servico" class="form-label"><strong>Serviço</strong></label>
                 <input type="text" class="form-control" id="servico" name="servico" placeholder="Serviço prestado">
                   
             </div>
