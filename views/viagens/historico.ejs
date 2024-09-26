@@ -89,8 +89,14 @@
      <form class="mb-4" method="GET" action="/viagens/historico">
         <div class="row">
             <div class="col-md-3">
-                <label for="usuario" class="form-label">Usuário</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome do usuário">
+                <label for="usuario" class="form-label">Usuário:</label>
+                <input type="text" id="usuario" class="form-control" name="usuario" 
+                       value="<%= usuario.tipo_Usuario === 'motorista' ? usuario.nome : '' %>" 
+                       placeholder="<%= usuario.tipo_Usuario === 'motorista' ? usuario.nome : 'Digite o nome do usuário' %>" 
+                       <% if (usuario.tipo_Usuario === 'motorista') { %> 
+                           readonly 
+                       <% } %> 
+                       class="form-control" />
             </div>
             <div class="col-md-3">
                 <label for="veiculo" class="form-label">Veículo</label>
