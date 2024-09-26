@@ -200,6 +200,22 @@ p, .form-label, .text-center {
     border-color: #346c02;
 }
 
+input[readonly] {
+    background-color: #346c02; 
+    color: white;
+    border-color: #346c02;
+    }
+    input[readonly]:hover {
+        background-color: #275003; 
+        cursor: not-allowed;
+        color: white;
+        }
+    
+    input[readonly]:focus {
+        background-color: #346c02; 
+        cursor: not-allowed;
+        color: white;
+        }
 /* Exibe a tabela em telas maiores que 1400px */
 @media (min-width: 1400px) {
     .card {
