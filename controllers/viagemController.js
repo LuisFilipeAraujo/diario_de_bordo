@@ -273,7 +273,8 @@ exports.listarViagem = async (req, res) => {
         const dataAtual = moment().format('DD/MM/YYYY HH:mm');
 
         res.render('viagens/historico', { 
-            viagens: viagensMapeadas, 
+            viagens: viagensMapeadas,
+            usuario,  
             itinerarios, 
             servicos, 
             modelos, 
