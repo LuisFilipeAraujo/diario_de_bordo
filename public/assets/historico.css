@@ -104,8 +104,7 @@ p, .form-label, .text-center {
     font-size: 14px;
 }
 .btn {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 5px;
     width: 80%;
     padding: 20px;
     font-size: 18px;
