@@ -14,6 +14,7 @@ const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 const loginController = require('./controllers/loginController');
 const viagemController = require('./controllers/viagemController');
 const session = require('express-session');
+require('dotenv').config();
 
 
 const app=express();//inicializando o express
@@ -28,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: 'seu-segredo-aqui',
+    secret:  process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // false em desenvolvimento
