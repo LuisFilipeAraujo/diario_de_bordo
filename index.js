@@ -86,6 +86,11 @@ app.get('/motoristas/gerenciar-motoristas', (req, res) => {
     res.render('motoristas/gerenciar-motoristas');
 });
 
+// Rota para a página "criar-motorista"
+app.get('/motoristas/criar-motorista', (req, res) => {
+    res.render('motoristas/criar-motorista');
+});
+
 
 // Rota para a página adicionar-saida - mostrar credenciais na tela do form de adicionar saida
 app.get('/viagens/adicionar-saida', loginController.exibeCredenciais); // Atualizada
