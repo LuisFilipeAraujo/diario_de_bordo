@@ -13,6 +13,7 @@ const viagem_ocorrenciaRoutes = require('./routes/viagem_ocorrenciaRoutes');
 
 const loginController = require('./controllers/loginController');
 const viagemController = require('./controllers/viagemController');
+const usuarioController = require('./controllers/usuarioController');
 const session = require('express-session');
 require('dotenv').config();
 
@@ -87,10 +88,7 @@ app.get('/motoristas/gerenciar-motoristas', (req, res) => {
 });
 
 // Rota para a página "criar-motorista"
-app.get('/motoristas/criar-motorista', (req, res) => {
-    res.render('motoristas/criar-motorista');
-});
-
+app.get('/motoristas/criar-motorista', usuarioController.renderizarCriarMotorista);
 
 // Rota para a página adicionar-saida - mostrar credenciais na tela do form de adicionar saida
 app.get('/viagens/adicionar-saida', loginController.exibeCredenciais); // Atualizada
