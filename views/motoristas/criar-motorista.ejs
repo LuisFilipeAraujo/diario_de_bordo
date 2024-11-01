@@ -24,6 +24,35 @@
 
 
     <script>
+            // Função para enviar os dados via fetch
+            async function salvarDados() {
+                const nome = document.getElementById('name').value;
+                const login = document.getElementById('username').value;
+                const setor_ID = document.getElementById('setor').value;
+                const tipo_Usuario = document.getElementById('tipo_Usuario').value;
+                const senha = document.getElementById('senha').value;
+    
+                const usuarioData = { nome, login, setor_ID, tipo_Usuario, senha };
+    
+                try {
+                    const response = await fetch('/usuarios', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(usuarioData)
+                    });
+    
+                    const result = await response.json();
+                    if (response.ok) {
+                        mostrarAlerta('Usuário adicionado com sucesso!', 'success');
+                    } else {
+                        mostrarAlerta(result.message || 'Erro ao adicionar usuário', 'danger');
+                    }
+                } catch (error) {
+                    mostrarAlerta('Erro ao conectar com o servidor', 'danger');
+                }
+            }
 
         function mostrarAlerta(mensagem, tipo) {
             const alertaDiv = document.getElementById('alerta');
@@ -42,7 +71,7 @@
         <form action="javascript:salvarDados()" method="post">
             <div class="form-group">
                 <label for="name"><strong>Digite o nome do novo usuário:</strong></label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="ex: Novo Usuário da Silva">
+                <input type="text" id="name" name="name" class="form-control" placeholder="ex: Nome completo">
             </div>
             <div class="form-group">
                 <label for="username"><strong>Crie uma Credencial de Login:</strong></label>
@@ -50,11 +79,23 @@
                 <input type="hidden" id="usuario_ID" name="usuario_ID">
             </div>
             <div class="form-group">
-                <label for="veiculo"><strong>Selecione o Setor:</strong></label>
+                <label for="setor"><strong>Selecione o Setor:</strong></label>
+                <select id="setor" name="setor_ID" class="form-control">
+                  <% setores.forEach(setor => { %>
+                    <option value="<%= setor.setor_ID %>"><%= setor.nome_setor %></option>
+                  <% }); %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tipo_Usuario"><strong>Selecione o tipo de usuário:</strong></label>
+                <select id="tipo_Usuario" name="tipo_Usuario" class="form-control" required>
+                    <option value="motorista">Motorista</option>
+                    <option value="administrador">Administrador</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="itinerario"><strong>Selecione o tipo de usuário:</strong></label>
-                <input type="text" id="itinerario" name="itinerario" class="form-control" required>
+                <label for="senha"><strong>Digite uma senha:</strong></label>
+                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
             </div>
         
             <button type="submit" class="btn btn-primary"><strong><i class="fa-solid fa-check" style="color: #ffffff;"></i> Confirmar</strong></button>
