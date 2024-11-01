@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuarios');
+const Setor = require('../models/setor');
 
 //POST
 exports.adicionarUsuario = async (req, res) => {
@@ -60,5 +61,14 @@ exports.editarUsuario = async (req, res) => {
   } catch (error) {
       console.error('Erro ao atualizar usuário:', error);
       res.status(500).json({ message: 'Erro ao atualizar usuário' });
+  }
+};
+exports.renderizarCriarMotorista = async (req, res) => {
+  try {
+      const setores = await Setor.findAll();
+      res.render('motoristas/criar-motorista', { setores });
+  } catch (error) {
+      console.error('Erro ao buscar setores:', error);
+      res.status(500).send('Erro ao carregar a página');
   }
 };
