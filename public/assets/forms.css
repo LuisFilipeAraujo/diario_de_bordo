@@ -57,12 +57,15 @@ body, html {
     margin-bottom: 20px;
 }
 
-#veiculo {
+#veiculo, #setor, #tipo_Usuario {
     appearance: none; 
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black"><path d="M4.2 6.3L8 10.1l3.8-3.8 1.4 1.4-5.2 5.2-5.2-5.2z"/></svg>') no-repeat right 10px center;
     background-size: 12px; 
     background-color: white;
-    color: gray;
+    color: rgb(0, 0, 0);
+    border: 1px solid #ced4da;
+    padding: 8px 12px; 
+    border-radius: 0.25rem;
 }
 input[readonly] {
 background-color: #346c02; 
