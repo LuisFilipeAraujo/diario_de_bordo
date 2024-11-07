@@ -81,6 +81,7 @@
             <div class="form-group">
                 <label for="setor"><strong>Selecione o Setor:</strong></label>
                 <select id="setor" name="setor_ID" class="form-control">
+                <option value="" disabled selected>Selecione um setor</option>
                   <% setores.forEach(setor => { %>
                     <option value="<%= setor.setor_ID %>"><%= setor.nome_setor %></option>
                   <% }); %>
