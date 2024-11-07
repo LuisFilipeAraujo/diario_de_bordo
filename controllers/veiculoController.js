@@ -1,4 +1,5 @@
 const Veiculo = require('../models/veiculo');
+const Setor = require('../models/setor');
 
 //POST
 exports.adicionarVeiculo = async (req, res) => {
@@ -58,5 +59,15 @@ exports.editarVeiculo = async (req, res) => {
   } catch (error) {
       console.error('Erro ao atualizar veículo:', error);
       res.status(500).json({ message: 'Erro ao atualizar veículo' });
+  }
+};
+
+exports.renderizarCriarVeiculo = async (req, res) => {
+  try {
+      const setores = await Setor.findAll();
+      res.render('veiculos/criar-veiculos', { setores });
+  } catch (error) {
+      console.error('Erro ao buscar setores:', error);
+      res.status(500).send('Erro ao carregar a página');
   }
 };
